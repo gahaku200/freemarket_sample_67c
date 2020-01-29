@@ -51,7 +51,7 @@
 - belongs_to_active_hash :delivery_charge_id
 - belongs_to_active_hash :ship-from_id
 - belongs_to_active_hash :delivery_days_id
-- has_many :photos
+- has_many :images
 - belongs_to :brand
 - belongs_to :user
 - belongs_to :category
@@ -68,7 +68,7 @@
 - has_ancestry
 - add_index :category, :ancestry
 
-## Photosテーブル
+## Imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |image|text|null: false|
