@@ -43,6 +43,8 @@
 |delivery_days_id|integer|null: false|
 |price|integer|null: false|
 |user|references|null: false, foreign_key: true|
+|brand|references|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to_active_hash :status_id
@@ -50,7 +52,7 @@
 - belongs_to_active_hash :ship-from_id
 - belongs_to_active_hash :delivery_days_id
 - has_many :photos
-- has_many :brands
+- belongs_to :brand
 - belongs_to :user
 - belongs_to :category
 - add_index :products, :name
@@ -79,10 +81,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|
-|product|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :product
+- has_many :products
 
 
 ## Cardsテーブル
