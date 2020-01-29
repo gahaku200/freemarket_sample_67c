@@ -1,24 +1,97 @@
-# README
+## Usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|email|string|null: false, unique: true|
+|encrypted_password|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birthday_year|integer|null: false|
+|birthday_month|integer|null: false|
+|birthday_day|integer|null: false|
 
-Things you may want to cover:
+### Association
+- has_many :products
+- has_one :address
 
-* Ruby version
+## Addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|zipcode|string|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|municipality|string|null: false|
+|address|string|null: false|
+|address2|string|
+|phone_num|integer|
+|user|references|null: false, foreign_key: true|
 
-* System dependencies
+### Association
+- belongs_to :user
 
-* Configuration
+## Productsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|description|text|null: false|
+|status_id|integer|null: false|
+|delivery_charge_id|integer|null: false|
+|ship_from_id|integer|null: false|
+|delivery_days_id|integer|null: false|
+|price|integer|null: false|
+|user|references|null: false, foreign_key: true|
+|brand|references|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
 
-* Database creation
+### Association
+- belongs_to_active_hash :status_id
+- belongs_to_active_hash :delivery_charge_id
+- belongs_to_active_hash :ship-from_id
+- belongs_to_active_hash :delivery_days_id
+- has_many :images
+- belongs_to :brand
+- belongs_to :user
+- belongs_to :category
+- add_index :products, :name
 
-* Database initialization
+## Categorysテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|ancestry|string|null: false|
 
-* How to run the test suite
+### Association
+- has_many :products
+- has_ancestry
+- add_index :category, :ancestry
 
-* Services (job queues, cache servers, search engines, etc.)
+## Imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|text|null: false|
+|product|references|null: false, foreign_key: true|
 
-* Deployment instructions
+### Association
+- belongs_to :product
 
-* ...
+## Brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+
+### Association
+- has_many :products
+
+
+## Cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|customer_id|string|null: false|
+|card_id|string|null: false|
+|user|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
