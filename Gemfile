@@ -71,6 +71,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml-rails'
+gem 'font-awesome-sass'
+gem 'erb2haml'
+
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
