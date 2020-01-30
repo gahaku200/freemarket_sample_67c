@@ -9,10 +9,10 @@
         %br 
         フリマアプリです
       .content__btn
-        %a.btn1{href: '#'}
-          = image_tag src="http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg"
-        %a.btn2{href: '#'}
-          = image_tag src="http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg"
+        = link_to '#', class:'btn1' do
+          = image_tag src='http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg'
+        = link_to '#', class:'btn2' do
+          = image_tag src='http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg'
     .picture
   %section.topIntroduction
     %h2.subtitle
@@ -21,7 +21,7 @@
       %li.list
         .list__pict
           %span.number 1
-          = image_tag src="pict-reason-01.jpg"
+          = image_tag src='pict-reason-01.jpg'
         %h3.list__text
           %span 3分
           ですぐに出品
@@ -30,7 +30,7 @@
       %li.list
         .list__pict
           %span.number 2
-          = image_tag src="pict-reason-02.jpg"
+          = image_tag src='pict-reason-02.jpg'
         %h3.list__text
           %span シンプル
           で使いやすい
@@ -39,7 +39,7 @@
       %li.list.list--last
         .list__pict
           %span.number 3
-          = image_tag src="pict-reason-03.jpg"
+          = image_tag src='pict-reason-03.jpg'
         %h3.list__text
           手数料
           %span 業界最安
@@ -55,29 +55,29 @@
         %br
         ほしかったあの商品に出会えるかもしれません。
       .btn
-        %a(href='#')
-          = image_tag src="http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class: 'btn1'
-        %a(href='#')
-          = image_tag src="http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class: 'btn2'
+        = link_to '#' do
+          = image_tag src='http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg', class: 'btn1'
+        = link_to '#' do
+          = image_tag src='http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg', class: 'btn2'
   %section.topFeatures
     %h2.head
       FURIMAの特徴
     .items
       %section.item
         %figure.item__img
-          = image_tag src="icon-01.png"
+          = image_tag src='icon-01.png'
         %h3.item__subtitle 簡単に売り買いできる
         %p.item__detail
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       %section.item
         %figure.item__img
-          = image_tag src="icon-03.png"
+          = image_tag src='icon-03.png'
         %h3.item__subtitle 売上金は即日振込みに対応
         %p.item__detail
           午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします！
       %section.item
         %figure.item__img
-          = image_tag src="icon-04.png"
+          = image_tag src='icon-04.png'
         %h3.item__subtitle 様々な支払いに対応
         %p.item__detail
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
@@ -85,13 +85,13 @@
     %h2.head ピックアップカテゴリー
     .productBox
       .productHead
-        %a(href='#')
+        = link_to '#' do
           %h3.title 新規投稿商品
       .productLists
         .productList
-          %a(href='/products/3')
+          = link_to '/products/3' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
             .productList--body
               %h3.name product3
               .details
@@ -102,9 +102,9 @@
                     0
                 %p (税込)
         .productList
-          %a(href='/products/2')
+          = link_to '/products/2' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
             .productList--body
               %h3.name product2
               .details
@@ -115,9 +115,9 @@
                     0
                 %p (税込)
         .productList
-          %a(href='/products/1')
+          = link_to '/products/1' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
             .productList--body
               %h3.name product1
               .details
@@ -131,13 +131,13 @@
     %h2.head ピックアップブランド
     .productBox
       .productHead
-        %a(href='#')
+        = link_to '#' do
           %h3.title アーカイバ
       .productLists
         .productList
-          %a(href='/products/3')
+          = link_to '/products/3' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
             .productList--body
               %h3.name product3
               .details
@@ -148,9 +148,9 @@
                     0
                 %p (税込)
         .productList
-          %a(href='/products/2')
+          = link_to '/products/2' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
             .productList--body
               %h3.name product2
               .details
@@ -161,9 +161,9 @@
                     0
                 %p (税込)
         .productList
-          %a(href='/products/1')
+          = link_to '/products/1' do
             %figure.productList--img
-              = image_tag src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
+              = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
             .productList--body
               %h3.name product1
               .details
@@ -178,7 +178,7 @@
     %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
     %p.inner__text 今すぐ無料ダウンロード！
     .inner__icon
-      %a(href='#')
-        = image_tag src="http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class: 'LinkIcon btn1'
-      %a(href='#')
-        = image_tag src="http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class: 'LinkIcon btn2'
+      = link_to '#' do
+        = image_tag src='http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg', class: 'LinkIcon btn1'
+      = link_to '#' do
+        = image_tag src='http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg', class: 'LinkIcon btn2'
