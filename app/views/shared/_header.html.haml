@@ -1,0 +1,26 @@
+%header.mainHeader
+  .headerIn
+    .headerHeader
+      %h1.icon
+        %a(href='/')
+          = image_tag src="logo.png"
+      .searchbox
+        %form
+          %input{type: "hidden"}
+          %input{placeholder: "キーワードから探す"}
+          %button
+            .searchbox__icon
+              = image_tag src="icon-search 1.png"
+          %input{type: "hidden"}
+      %ul.resultlists
+    .nav
+      %ul.listsLeft
+        %li.listsLeft__item.listsLeft__item--first
+          %a#catBtn(href='#') カテゴリー
+        %li.listsLeft__item
+          %a#brandBtn(href='#') ブランド
+      %ul.listsRight
+        %li.listsRight__item.listsRight__item--login
+          %a(href='#') ログイン
+        %li.listsRight__item.listsRight__item--new
+          %a(href='#') 新規会員登録
