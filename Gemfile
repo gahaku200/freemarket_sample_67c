@@ -79,3 +79,4 @@ gem 'fog-aws'
 gem 'mini_magick'
 
 gem 'devise'
+gem 'pry-rails'
