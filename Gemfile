@@ -77,3 +77,5 @@ gem 'erb2haml'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
+
+gem 'devise'
