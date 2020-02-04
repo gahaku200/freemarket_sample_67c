@@ -83,7 +83,7 @@
                       .select-wrap
                         = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
                         = form_with model:@product do |f|
-                          = f.collection_select :delivery_charge_id, Delivery_charge.all, :id, :name, {}, class: 'select-default'
+                          = f.collection_select :delivery_charge_id, DeliveryCharge.all, :id, :name, {}, class: 'select-default'
                     .form-group
                       %label
                         発送元の地域
@@ -91,7 +91,7 @@
                       .select-wrap
                         = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
                         = form_with model:@product do |f|
-                          = f.collection_select :ship_from_id, Ship_from.all, :id, :name, {}, class: 'select-default'
+                          = f.collection_select :ship_from_id, ShipFrom.all, :id, :name, {}, class: 'select-default'
                     .form-group
                       %label
                         発送までの日数
@@ -99,7 +99,7 @@
                       .select-wrap
                         = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
                         = form_with model:@product do |f|
-                          = f.collection_select :delivery_days_id, Delivery_days.all, :id, :name, {}, class: 'select-default'
+                          = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :name, {}, class: 'select-default'
                 .sell-content.clearfix
                   %h3.sell-sub-head 販売価格(300〜9,999,999)
                   %a.form-question{href: '/jp/help_center/article/64/', target: '_blank'} ?
