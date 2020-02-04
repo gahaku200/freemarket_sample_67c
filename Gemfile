@@ -77,3 +77,6 @@ gem 'erb2haml'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
+
+gem 'ancestry'
+gem 'active_hash'
