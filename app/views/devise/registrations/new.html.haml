@@ -27,10 +27,16 @@
     = f.text_field :last_name_kana
 
   .field
-    = f.label :age
+    = f.label :birthday
     %br/
-    = f.number_field :age
-    
+    year
+    = f.number_field :birthday_year
+    month
+    = f.number_field :birthday_month
+    day
+    = f.number_field :birthday_day
+
+
   .field
     = f.label :email
     %br/
