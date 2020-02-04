@@ -17,8 +17,13 @@ ActiveRecord::Schema.define(version: 2020_02_02_065658) do
     t.string "address_last_name", null: false
     t.string "address_first_name_kana", null: false
     t.string "address_last_name_kana", null: false
-    t.integer "zipcode"
-    t.text "address"
+    t.integer "zipcode", null: false
+    t.string "prefecture", null: false
+    t.string "city", null: false
+    t.string "municipality", null: false
+    t.string "address", null: false
+    t.string "building_name"
+    t.integer "phone_num"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

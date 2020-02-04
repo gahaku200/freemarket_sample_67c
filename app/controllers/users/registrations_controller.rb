@@ -36,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address_params
     params.require(:address).permit(
     :address_first_name, :address_last_name, :address_first_name_kana, :address_last_name_kana,
-    :zipcode, :address)
+    :zipcode, :prefecture, :city, :municipality, :address, :building_name, :phone_num)
   end
 # frozen_string_literal: true
 
