@@ -2,6 +2,24 @@
 = form_for @address do |f|
   = render "devise/shared/error_messages", resource: @address
   .field
+    = f.label :address_first_name
+    %br/
+    = f.text_field :address_first_name
+  .field
+    = f.label :address_last_name
+    %br/
+    = f.text_field :address_last_name
+  .field
+    = f.label :address_first_name_kana
+    %br/
+    = f.text_field :address_first_name_kana
+
+  .field
+    = f.label :address_last_name_kana
+    %br/
+    = f.text_field :address_last_name_kana
+
+  .field
     = f.label :zipcode
     %br/
     = f.text_field :zipcode
