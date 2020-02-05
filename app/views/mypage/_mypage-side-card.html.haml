@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to mypage_path , class: 'mypage-nav-list-item' do
           マイページ
           = icon 'fas', 'chevron-right'
       %li
@@ -65,6 +65,6 @@
           電話番号の確認
           = icon 'fas', 'chevron-right'
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to mypage_logout_path, class: 'mypage-nav-list-item' do
           ログアウト
           = icon 'fas', 'chevron-right'
