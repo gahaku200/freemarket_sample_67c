@@ -1,0 +1,13 @@
+.l-content
+  %section.l-chapter-container
+    %h2.l-chapter-head 支払い方法
+    .l-single-inner
+      %section
+        .l-single-content
+          %h3.l-chapter-sub-head クレジットカード一覧
+        %ul.settings-payment-list
+      %section.settings-add-card
+        .l-single-content
+          = link_to mypage_card_credit_path, class: 'btn-default btn-blue submit_button' do
+            = icon 'fas', 'credit-card'
+            クレジットカードを追加する
