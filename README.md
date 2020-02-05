@@ -42,7 +42,8 @@
 |ship_from_id|integer|null: false|
 |delivery_days_id|integer|null: false|
 |price|integer|null: false|
-|user|references|null: false, foreign_key: true|
+|seller_id|references|null: false, foreign_key: { to_table: :users }|
+|buyer_id|references|foreign_key: { to_table: :users }|
 |brand|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 
