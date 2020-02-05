@@ -25,7 +25,7 @@
 |city|string|null: false|
 |municipality|string|null: false|
 |address|string|null: false|
-|address2|string|
+|building_name|string|
 |phone_num|integer|
 |user|references|null: false, foreign_key: true|
 
@@ -35,14 +35,15 @@
 ## Productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index:true|
 |description|text|null: false|
 |status_id|integer|null: false|
 |delivery_charge_id|integer|null: false|
 |ship_from_id|integer|null: false|
 |delivery_days_id|integer|null: false|
 |price|integer|null: false|
-|user|references|null: false, foreign_key: true|
+|seller_id|references|null: false, foreign_key: { to_table: :users }|
+|buyer_id|references|foreign_key: { to_table: :users }|
 |brand|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 
@@ -55,18 +56,16 @@
 - belongs_to :brand
 - belongs_to :user
 - belongs_to :category
-- add_index :products, :name
 
 ## Categorysテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|null: false|
+|ancestry|string|null: false, index:true|
 
 ### Association
 - has_many :products
 - has_ancestry
-- add_index :category, :ancestry
 
 ## Imagesテーブル
 |Column|Type|Options|
