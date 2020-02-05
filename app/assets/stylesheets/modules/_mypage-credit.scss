@@ -196,15 +196,9 @@
   }
 
   .btn-red {
-    background: #3CCACE;
-    border: 1px solid #3CCACE;
-    color: #fff;
-
-    &:hover {
-      background: #e62017;
-      color: #fff;
+    @include red_btn();
     }
-  }
+  
 
   .has-error-text {
     color: #ea352d;

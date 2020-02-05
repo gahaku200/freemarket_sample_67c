@@ -29,18 +29,7 @@ img {
   }
 }
 
-@mixin clearfix() {
-  &:after {
-    content: "";
-    width: 70px;
-    height: 4px;
-    background-color: #3CCACE;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
+
 
 .mainHeader{
   padding: 0 60px;

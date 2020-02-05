@@ -82,14 +82,7 @@
   }
 
   .btn-blue {
-    background: #3CCACE;
-    border: 1px solid #3CCACE;
-    color: #fff;
-
-    &:hover {
-      background: #30a1a4;
-      color: #fff;
-    }
+    @include blue_btn();
   }
 
   i {
