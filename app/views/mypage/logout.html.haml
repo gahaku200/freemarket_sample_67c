@@ -9,10 +9,21 @@
       %li
         = link_to '#', class: 'bread-crumbs-mypage' do
           %span マイページ
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'bread-crumbs-mypage' do
+          %span ログアウト
+
   .l-container.clearfix
-    = render "mypage-main"
+    .l-content
+      .l-chapter-container
+        .l-single-inner
+          .l-single-content
+            = link_to '#', class: 'btn-default btn-blue' do
+              ログアウト
+
     
-    = render "mypage-side"
+    = render "mypage-side-logout"
     
   %aside.appBanner
     .inner

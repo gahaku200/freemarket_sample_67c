@@ -9,10 +9,15 @@
       %li
         = link_to '#', class: 'bread-crumbs-mypage' do
           %span マイページ
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'bread-crumbs-mypage' do
+          %span 支払い方法
+
   .l-container.clearfix
-    = render "mypage-main"
+    = render "mypage-card"
     
-    = render "mypage-side"
+    = render "mypage-side-card"
     
   %aside.appBanner
     .inner
