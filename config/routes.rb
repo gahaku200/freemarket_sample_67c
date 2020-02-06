@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
 
-  
   root "products#index"
-  get '/products/new', to: 'products#new'
+  resources :products, only: [:index, :new, :create]
+
   get '/mypage', to: 'mypage#index'
   get '/mypage/card', to: 'mypage#card'
   get '/mypage/card/credit', to: 'mypage#credit'
