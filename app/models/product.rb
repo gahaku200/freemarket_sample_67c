@@ -7,4 +7,16 @@ class Product < ApplicationRecord
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
+
+
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :status_id, presence: true
+  validates :delivery_charge_id, presence: true
+  validates :ship_from_id, presence: true
+  validates :delivery_days_id, presence: true
+  validates :price, presence: true,
+                    numericality: {
+                      greater_than_or_equal_to: 300,
+                      less_than_or_equal_to: 9999999}
 end
