@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :birthday_year, presence:true
   validates :birthday_month, presence:true
   validates :birthday_day, presence:true
+  validates :email, format:{ with:/[\w.\-]+@[\w\-]+\.[\w.\-]+/ }, presence:true
 
   has_one :address
 

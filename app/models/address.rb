@@ -9,5 +9,4 @@ class Address < ApplicationRecord
   validates :city, presence: true
   validates :municipality, presence: true
   validates :address, presence: true
-  # validates :phone_num, format:{ with:/\A\d{10,11}\z/ }
 end
