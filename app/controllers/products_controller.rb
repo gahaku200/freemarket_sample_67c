@@ -12,13 +12,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # if @product.save
-    #   redirect_to root_path, notice: "出品が完了しました"
     if @product.save
       params[:images][:image].each do |image|
         @product.images.create!(image: image, product_id: @product.id)
       end
-      redirect_to root_path
+      redirect_to root_path, notice: "出品が完了しました"
     else
       redirect_to sell_products_path
 

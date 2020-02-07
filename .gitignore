@@ -27,3 +27,8 @@
 /config/master.key
 
 /vendor/bundle
+
+/public/*
+!/public/upload/
+/public/upload/*
+!/public/uploads/.image

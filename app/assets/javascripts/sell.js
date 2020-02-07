@@ -27,7 +27,7 @@ $(function() {
       let imgSrc = reader.result;
       buildHTML(imgSrc);
       images.push(imgSrc);
-    }
+      }
     }
   });
 

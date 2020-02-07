@@ -25,20 +25,6 @@
                           またはクリックしてファイルをアップロード
                           = f.fields_for :images do |i|
                             = i.file_field :image, multiple: true, id: 'sell-img', name: 'images[image][]'
-                        -# - if @item.errors.any?
-                        -#   %ul
-                        -#     %li.formError= @item.errors.full_messages_for(:image).first
-                    -# .sell-dropbox-container.clearfix.state-image-number-10
-                    -#   .sell-upload-items-container
-                    -#     .sell-upload-items.have-item-0
-                    -#       %ul
-                    -# %label.sell-upload-drop-box.have-item-0
-                    -#   %input.sell-upload-drop-file{type: 'file', multiple: 'multiple', name: 'image1'}
-                    -#   %pre.visible-pc
-                    -#     :preserve
-                    -#       ドラッグアンドドロップ
-                    -#       またはクリックしてファイルをアップロード
-                    -#     = icon('fa', 'camera', class: 'icon-camera')  %i.icon-camera.fas.fa-camera
                   .sell-content
                     .form-group
                       %label
