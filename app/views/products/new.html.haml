@@ -47,7 +47,6 @@
                         .select-categories-form
                     .product-text-form__category.sell-form-box
                       .actions
-                        %i.icon-arrow-bottom.fas.fa-angle-down
                         = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
                       .form-group
                         = f.fields_for :brand do |brand|
