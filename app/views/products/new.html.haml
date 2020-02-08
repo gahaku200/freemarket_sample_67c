@@ -31,23 +31,29 @@
                         商品名
                         %span.form-require 必須
                       %div
-                        = f.text_field :name, placeholder: '商品名 (必須40文字まで)', class: '.input-default', required: true
+                        = f.text_field :name, placeholder: '商品名 (必須40文字まで)', class: 'input-default', required: true
                     .form-group
                       %label
                         商品の説明
                         %span.form-require 必須
-                      = f.text_area :description, placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', class:'.textarea-default',required: true
+                      = f.text_area :description, placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', class:'textarea-default',required: true
                   .sell-content.clearfix
                     %h3.sell-sub-head 商品の詳細
                     .sell-form-box
                       .form-group
                         %label
                           カテゴリー
-                          %span.form-require 必須
-                        %div
-                          .select-wrap
-                            %i.icon-arrow-bottom.fas.fa-angle-down
-                            = f.select :category_id, Category.all.map { |category| [category.name, category.id] }, class: 'select-default'
+                          %span.form-require 必須       
+                        .select-categories-form
+                    .product-text-form__category.sell-form-box
+                      .actions
+                        = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
+                      .form-group
+                        = f.fields_for :brand do |brand|
+                          = brand.label "ブランド"
+                          %span.form-require-gray 任意
+                          %div
+                            = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
                       .form-group
                         %label
                           商品の状態
@@ -89,8 +95,7 @@
                               価格
                               %span.form-require 必須
                             .l-right.sell-price-input
-                              %p
-                                ¥
+                              ¥
                               %div
                                 = f.number_field :price, class: 'price-flex__input', placeholder: '例） 300', required: true
                         %li.clearfix
