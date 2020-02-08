@@ -1,0 +1,25 @@
+.product-text-form__info-box {
+  margin: 40px 0 0;
+    label {
+      font-weight: 600;
+      display: inline-block;
+    }
+    .select-wrap {
+      position: relative;
+      margin: 8px 0 0;
+      .icon-arrow-bottom {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        z-index: 2;
+        color: #888;
+        font-size: 25px;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+      }
+      select {
+        -webkit-appearance: none;
+        width: 100%;
+      }
+    }
+  }

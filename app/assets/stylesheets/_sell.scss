@@ -213,18 +213,19 @@ main {
 .sell-content {
   padding: 40px;
   border-top: 1px solid #eee;
-  .form-group:first-child {
+  .form-group {
     margin: 0;
     label {
       font-weight: 600;
       display: inline-block;
     }
-    div {}
+    div {
     .input-default {
       width: 95%;
       margin: 8px 0 0;
       -webkit-border-radius: 4;
     }
+  }
   }
   .form-group {
     margin: 40px 0 0;
@@ -448,7 +449,6 @@ main {
         .l-right {
           width: 50%;
           font-family: 'Source Sans Pro';
-          display: flex;
           position: relative;
           p {
             position: absolute;
@@ -457,13 +457,18 @@ main {
           }
           div {
             display: inline-block;
-            width: 100%;
-            margin: 0 0 0 10%;
           }
-          .input-default {
-            margin: 0;
+          .price-flex__input {
             text-align: right;
-            -webkit-border-radius: 4;
+            height: 48px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 16px;
+            -webkit-appearance: none;
+            margin: 0;
+            
           }
         }
       }
