@@ -34,6 +34,17 @@ img {
   font-size: 12px;
   vertical-align: top;
 }
+.form-require-gray {
+  background: #ccc;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+  font-weight: 600;
+}
+
 .clearfix:after {
   content: "";
   display: block;
@@ -221,7 +232,7 @@ main {
     }
     div {
     .input-default {
-      width: 95%;
+      width: 100%;
       margin: 8px 0 0;
       -webkit-border-radius: 4;
     }
@@ -239,8 +250,8 @@ main {
       outline: 0;
       -webkit-appearance: none;
       display: block;
-      width: 97%;
-      max-width: 97%;
+      width: 100%;
+      max-width: 100%;
       min-height: 104px;
       padding: 10px;
       border: 1px solid #ccc;
@@ -264,7 +275,7 @@ main {
     font-size: 14px;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .form-group:first-child {
       margin: 0;
       label {
@@ -290,6 +301,7 @@ main {
             -webkit-appearance: none;
             width: 100%;
           }
+
         }
       }
     }
@@ -339,7 +351,7 @@ main {
     text-align: center;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .form-group:first-child {
       margin: 0;
       label {
@@ -436,7 +448,7 @@ main {
     text-align: center;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .sell-price {
       list-style: none;
       li:first-child {
@@ -457,6 +469,7 @@ main {
           }
           div {
             display: inline-block;
+            width: 80%;
           }
           .price-flex__input {
             text-align: right;
