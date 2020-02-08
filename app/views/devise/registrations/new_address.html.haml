@@ -1,54 +1,57 @@
-%h2 住所情報登録
-= form_for @address do |f|
-  = render "devise/shared/error_messages", resource: @address
+= render "shared/rs-header"
+.register-title 送り先情報入力
+.register-main
+  = form_for @address do |f|
+    -# = render "devise/shared/error_messages", resource: @address
+    .field
+      = f.label "送り先氏名（全角）"
+      %span.caution 必須
+      %br/
+      = f.text_field :address_first_name, placeholder: "姓"
+      = f.text_field :address_last_name,  placeholder: "名"
 
-  .field
-    = f.label :address_first_name
-    %br/
-    = f.text_field :address_first_name
-  .field
-    = f.label :address_last_name
-    %br/
-    = f.text_field :address_last_name
+    .field
+      = f.label "送り先氏名カナ（全角）"
+      %span.caution 必須
+      %br/
+      = f.text_field :address_first_name_kana, placeholder: "セイ"
+      = f.text_field :address_last_name_kana, placeholder: "メイ"
 
-  .field
-    = f.label :address_first_name_kana
-    %br/
-    = f.text_field :address_first_name_kana
-  .field
-    = f.label :address_last_name_kana
-    %br/
-    = f.text_field :address_last_name_kana
+    .field
+      = f.label "郵便番号"
+      %span.caution 必須
+      %br/
+      = f.text_field :zipcode, placeholder: "例）123-4567"
+    .field
+      = f.label "都道府県"
+      %span.caution 必須
+      %br/
+      = f.text_field :prefecture
+    .field
+      = f.label "市区"
+      %span.caution 必須
+      %br/
+      = f.text_field :city
+    .field
+      = f.label "町村"
+      %span.caution 必須
+      %br/
+      = f.text_field :municipality
+    .field
+      = f.label   "番地"
+      %span.caution 必須
+      %br/
+      = f.text_field :address
+    .field
+      = f.label "ビル・マンション・アパート・部屋番号"
+      %br/
+      = f.text_field :building_name
+    .field
+      = f.label "電話番号"
+      %br/
+      = f.text_field :phone_num
 
-  .field
-    = f.label :zipcode
-    %br/
-    = f.text_field :zipcode
-  .field
-    = f.label :prefecture
-    %br/
-    = f.text_field :prefecture
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-  .field
-    = f.label :municipality
-    %br/
-    = f.text_field :municipality
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-  .field
-    = f.label :building_name
-    %br/
-    = f.text_field :building_name
-  .field
-    = f.label :phone_num
-    %br/
-    = f.text_field :phone_num
-
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+    .actions
+      = f.submit "登録する",class:"next_btn"
+  = render "devise/shared/links"
+= render "shared/rs-footer"

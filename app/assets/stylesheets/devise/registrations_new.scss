@@ -1,0 +1,152 @@
+.register-title{
+  background-color: white;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 97px;
+  margin: auto;
+  text-align: center;
+  width: 700px;
+}
+
+.register-main{
+  background-color: white;
+  margin: auto;
+  margin-top: 1px;
+  padding: 8px 40px 64px;
+  width: 700px;
+  .field{
+    // height: 70px;
+    margin: auto;
+    margin-top: 32px;
+    width: 343px;
+    .caution{
+      background-color: #ea352d;
+      border-radius: 2px;
+      color: #ffffff;
+      font-size: 12px;
+      margin-left: 8px;
+      padding: 2px 4px;
+    }
+
+    #user_nickname{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 343px;
+    }
+
+    #user_first_name{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-right: 8px;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 165px;
+    }
+
+    #user_last_name{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 165px;
+    }
+
+    #user_first_name_kana{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-right: 8px;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 165px;
+    }
+
+    #user_last_name_kana{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 165px;
+    }
+
+    #user_birthday_year{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 0px 10px;
+      width: 76px;
+    }
+
+    #user_birthday_month{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 0px 10px;
+      width: 76px;
+    }
+
+    #user_birthday_day{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 0px 10px;
+      width: 76px;
+    }
+
+    #user_email{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 343px;
+    }
+
+    #user_password{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 343px;
+    }
+
+    #user_password_confirmation{
+      border-radius: 4px;
+      font-size: 16px;
+      margin: auto;
+      margin-top: 8px;
+      height: 48px;
+      padding: 10px 16px 8px;
+      width: 343px;
+    }
+  }
+  .next_btn{
+    background-color: #ea352d;
+    color: #ffffff;
+    display: block;
+    height: 50px;
+    margin: auto;
+    margin-top: 32px;
+    width: 343px;
+  }
+}
