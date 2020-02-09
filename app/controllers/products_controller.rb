@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index]
 
   def index
+    @images =Image.all
+    @products = Product.includes(:images).order('created_at DESC').where(customer_id: nil)
   end
 
   def new
