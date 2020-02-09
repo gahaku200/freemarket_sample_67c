@@ -1,9 +1,7 @@
 %bodybody
   .single-container
-    %header.single-header
-      %h1
-        = link_to '#' do
-          = image_tag src='logo.png', alt: 'FURIMA'
+    = render "header"
+
     %main.single-main
       %section.l-single-container.buy-item-container
         #sell-container
@@ -125,16 +123,4 @@
                     =f.submit class: 'btn-default.btn-red', value: '出品する' ;
                     %a.btn-default.btn-gray もどる
                 .overlay
-    %footer.single-footer
-      %nav
-        %ul.clearfix
-          %li
-            = link_to 'プライバシーポリシー', '#'
-          %li
-            = link_to 'メルカリ利用規約', '#'
-          %li
-            = link_to '特定商取引に関する表記', '#'
-      = link_to '#', class:'single-footer-logo' do
-        = image_tag src='logologo.png', alt: 'FURIMA', class: 'footer_img'
-      %p
-        %small © FURIMA, Inc.
+    = render "footer"
