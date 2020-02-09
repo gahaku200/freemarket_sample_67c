@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get '/mypage/card/credit', to: 'mypage#credit'
   get '/mypage/logout', to: 'mypage#logout'
 
-  get 'buys/index'
+  resources :buys, only: [:index]
 end
