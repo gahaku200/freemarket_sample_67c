@@ -1,2 +1,53 @@
-%h1 Buys#index
-%p Find me in app/views/buys/index.html.haml
+.single-container
+  = render "products/header"
+
+  %main.single-main
+    %section.l-single-container.buy-item-container
+      %h2.l-single-head.buy-head 購入内容の確認
+      %section.buy-content.buy-item
+        .buy-content-inner
+          .buy-item-box
+            %h3.buy-item-image
+              = image_tag 'icon_brand.png', size: '80x80'
+            .buy-item-detail
+              %p.buy-item-name テスト商品
+              %p.buy-price-ja.bold
+                %span ¥4,200
+                %span.item-shipping-fee （税込）送料込み
+      %section.buy-content.buy-item
+        .buy-content-inner
+          %form.buy-form
+            %ul.buy-price-table
+              %li.buy-price-row.buy-you-pay.bold
+                .buy-price-cell.buy-price-cell-label 支払い金額
+                .buy-price-cell
+                  %span ¥4,200
+            %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
+              .buy-content-inner
+                %h3 支払い方法
+                = link_to '#' do
+                  %p.buy-user-info-text
+                    = icon 'fas', 'chevron-right'
+                    %span.buy-register-text 登録してください
+            %section.buy-content.buy-user-info
+              .buy-content-inner
+                .clearfix
+                  %h3.l-left 配送先
+                  = link_to '#', class: 'l-right buy-user-info-fix' do
+                    %span 変更する
+                    = icon 'fas', 'chevron-right'
+                %address.buy-user-info-text
+                  %p
+                    〒819-〇〇〇〇
+                    %br/
+                    福岡県  〇〇
+                    〇〇
+                    %br/
+                    テストユーザー
+            %section.buy-content.buy-user-info
+              %button.btn-default.btn-blue.bold 購入する
+              %input#user_info_is_not_complete
+        %section
+
+
+  = render "products/footer"
