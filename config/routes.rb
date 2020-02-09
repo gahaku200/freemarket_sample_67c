@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'buys/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -22,4 +21,6 @@ Rails.application.routes.draw do
   get '/mypage/card', to: 'mypage#card'
   get '/mypage/card/credit', to: 'mypage#credit'
   get '/mypage/logout', to: 'mypage#logout'
+
+  get 'buys/index'
 end
