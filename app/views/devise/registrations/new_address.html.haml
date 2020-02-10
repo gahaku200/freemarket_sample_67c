@@ -11,14 +11,14 @@
       = f.text_field :address_last_name,  placeholder: "名"
 
     .field
-      = f.label "送り先氏名カナ（全角）"
+      = f.label "送り先氏名ひらがな（全角）"
       %span.caution 必須
       %br/
-      = f.text_field :address_first_name_kana, placeholder: "セイ"
-      = f.text_field :address_last_name_kana, placeholder: "メイ"
+      = f.text_field :address_first_name_kana, placeholder: "せい"
+      = f.text_field :address_last_name_kana, placeholder: "めい"
 
     .field
-      = f.label "郵便番号"
+      = f.label "郵便番号(半角数字とハイフン)"
       %span.caution 必須
       %br/
       = f.text_field :zipcode, placeholder: "例）123-4567"
