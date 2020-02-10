@@ -24,4 +24,16 @@ class Product < ApplicationRecord
                       
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
+
+  scope :image, -> { includes(:images) }
+  scope :buyer, -> { where(buyer_id: nil) }
+  scope :lady, -> { where(category_id: 45..148) }
+  scope :men, -> { where(category_id: 149..237) }
+  scope :brand_test, -> { where(brand_id: 1) }
+  scope :sorted, -> { order('created_at DESC').limit(3).to_a }
+  scope :product, -> { image.buyer.sorted }
+  scope :ladies, -> { image.lady.sorted }
+  scope :mens, -> { image.men.sorted }
+  scope :tests, -> { image.brand_test.sorted }
+
 end

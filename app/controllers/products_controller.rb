@@ -4,10 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @images =Image.all
-    @products = Product.includes(:images).where(buyer_id: nil).order('created_at DESC').limit(3).to_a
-    @products_ladies = Product.includes(:images).where(category_id: 45..148).order('created_at DESC').limit(3).to_a
-    @products_mens = Product.includes(:images).where(category_id: 149..237).order('created_at DESC').limit(3).to_a
-    @products_test = Product.includes(:images).where(brand_id: 1).order('created_at DESC').limit(3).to_a
+    @products = Product.product
+    @products_ladies = Product.ladies
+    @products_mens = Product.mens
+    @products_test = Product.tests
 
   end
 
