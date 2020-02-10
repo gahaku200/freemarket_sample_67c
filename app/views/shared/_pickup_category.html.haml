@@ -4,49 +4,10 @@
     = link_to '#' do
       %h3.title 新規投稿商品
   .productLists
-    - @products.each do |product|
-      = link_to products_path, class: 'main__center__products__product' do
-        - @images.each do |image|
-          - if product.id == image.product_id
-            = image_tag "#{image.image}", class: 'main__center__products__product__image'
-            - break
-        .productLists__body
-          .productLists__body__name 
-            = product.name
-          .productLists__body__price
-            = "#{product.price}円" 
-          .productLists__body__tax
-            （税込）
-
-%section.pickupContent
-  %h2.head レディース新着アイテム
-  .productBox
-    .productHead
-      = link_to '#' do
-        %h3.title 
-        -# ここからスタート
-    .productLists
-      - @products_ladies.each do |product|
-        = link_to products_path, class: 'main__center__products__product' do
-          - @images.each do |image|
-            - if product.id == image.product_id
-              = image_tag "#{image.image}", class: 'main__center__products__product__image'
-              - break
-          .productLists__body
-            .productLists__body__name 
-              = product.name
-            .productLists__body__price
-              = "#{product.price}円" 
-            .productLists__body__tax
-              （税込）
-    
-%section.pickupContent
-  %h2.head ピックアップブランド
-  .productBox
-    .productHead
-      = link_to '#' do
-        %h3.title テスト
-    .productLists
+    - if @products.empty?
+      .productLists__not
+        現在商品はありません。
+    - else
       - @products.each do |product|
         = link_to products_path, class: 'main__center__products__product' do
           - @images.each do |image|
@@ -60,3 +21,77 @@
               = "#{product.price}円" 
             .productLists__body__tax
               （税込）
+%section.pickupContent
+  %h2.head レディース新着アイテム
+  .productBox
+    .productHead
+      = link_to '#' do
+        %h3.title
+    .productLists
+      - if @products_ladies.empty?
+        .productLists__not
+          現在商品はありません。
+      - else
+        - @products_ladies.each do |product|
+          = link_to products_path, class: 'main__center__products__product' do
+            - @images.each do |image|
+              - if product.id == image.product_id
+                = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                - break
+            .productLists__body
+              .productLists__body__name 
+                = product.name
+              .productLists__body__price
+                = "#{product.price}円" 
+              .productLists__body__tax
+                （税込）
+
+%section.pickupContent
+  %h2.head メンズ新着アイテム
+  .productBox
+    .productHead
+      = link_to '#' do
+        %h3.title
+    .productLists
+      - if @products_mens.empty?
+        .productLists__not
+          現在商品はありません。
+      - else
+        - @products_mens.each do |product|
+          = link_to products_path, class: 'main__center__products__product' do
+            - @images.each do |image|
+              - if product.id == image.product_id
+                = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                - break
+            .productLists__body
+              .productLists__body__name 
+                = product.name
+              .productLists__body__price
+                = "#{product.price}円" 
+              .productLists__body__tax
+                （税込）
+    
+%section.pickupContent
+  %h2.head ピックアップブランド
+  .productBox
+    .productHead
+      = link_to '#' do
+        %h3.title テスト
+    .productLists
+      - if @products_ladies.empty?
+        .productLists__not
+          現在商品はありません。
+      - else
+        - @products_test.each do |product|
+          = link_to products_path, class: 'main__center__products__product' do
+            - @images.each do |image|
+              - if product.id == image.product_id
+                = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                - break
+            .productLists__body
+              .productLists__body__name 
+                = product.name
+              .productLists__body__price
+                = "#{product.price}円" 
+              .productLists__body__tax
+                （税込）

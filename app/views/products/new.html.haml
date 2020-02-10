@@ -47,11 +47,12 @@
                       .actions
                         = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
                       .form-group
-                        = f.fields_for :brand do |brand|
-                          = brand.label "ブランド"
+                        %label
+                          ブランド
                           %span.form-require-gray 任意
-                          %div
-                            = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
+                        .select-wrap
+                          %i.icon-arrow-bottom.fas.fa-angle-down
+                          = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---" }, class: 'select-default'
                       .form-group
                         %label
                           商品の状態

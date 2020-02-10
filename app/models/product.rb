@@ -6,7 +6,6 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delivery_days
   belongs_to :category
   belongs_to :brand, optional: true
-  accepts_nested_attributes_for :brand
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
