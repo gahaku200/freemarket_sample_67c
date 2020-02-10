@@ -121,7 +121,7 @@
                         また、出品をもちまして
                         = link_to '加盟店規約', '#', target:'_blank'
                         に同意したことになります。
-                    =f.submit class: 'btn-default.btn-red', value: '出品する' ;
-                    %a.btn-default.btn-gray もどる
+                    =f.submit class: 'btn-default btn-red', value: '出品する' ;
+                    = link_to 'もどる', root_path,class:"btn-default btn-gray"
                 .overlay
     = render "footer"
