@@ -1,14 +1,11 @@
 class ProductsController < ApplicationController
 
-  # before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :select_registrations]
 
   def index
   end
 
   def select_registrations
-  end
-
-  def test_create
   end
 
   def new

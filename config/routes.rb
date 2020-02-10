@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new, :create] do
     collection do
       get :select_registrations
-      get :test_create
     end
   end
 
