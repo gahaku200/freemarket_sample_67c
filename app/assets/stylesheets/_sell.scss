@@ -34,6 +34,17 @@ img {
   font-size: 12px;
   vertical-align: top;
 }
+.form-require-gray {
+  background: #ccc;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+  font-weight: 600;
+}
+
 .clearfix:after {
   content: "";
   display: block;
@@ -213,18 +224,19 @@ main {
 .sell-content {
   padding: 40px;
   border-top: 1px solid #eee;
-  .form-group:first-child {
+  .form-group {
     margin: 0;
     label {
       font-weight: 600;
       display: inline-block;
     }
-    div {}
+    div {
     .input-default {
-      width: 95%;
+      width: 100%;
       margin: 8px 0 0;
       -webkit-border-radius: 4;
     }
+  }
   }
   .form-group {
     margin: 40px 0 0;
@@ -238,8 +250,8 @@ main {
       outline: 0;
       -webkit-appearance: none;
       display: block;
-      width: 97%;
-      max-width: 97%;
+      width: 100%;
+      max-width: 100%;
       min-height: 104px;
       padding: 10px;
       border: 1px solid #ccc;
@@ -263,7 +275,7 @@ main {
     font-size: 14px;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .form-group:first-child {
       margin: 0;
       label {
@@ -289,6 +301,7 @@ main {
             -webkit-appearance: none;
             width: 100%;
           }
+
         }
       }
     }
@@ -338,7 +351,7 @@ main {
     text-align: center;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .form-group:first-child {
       margin: 0;
       label {
@@ -435,7 +448,7 @@ main {
     text-align: center;
   }
   .sell-form-box {
-    margin: 40px 0 0;
+    
     .sell-price {
       list-style: none;
       li:first-child {
@@ -448,7 +461,6 @@ main {
         .l-right {
           width: 50%;
           font-family: 'Source Sans Pro';
-          display: flex;
           position: relative;
           p {
             position: absolute;
@@ -457,13 +469,19 @@ main {
           }
           div {
             display: inline-block;
-            width: 100%;
-            margin: 0 0 0 10%;
+            width: 80%;
           }
-          .input-default {
-            margin: 0;
+          .price-flex__input {
             text-align: right;
-            -webkit-border-radius: 4;
+            height: 48px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 16px;
+            -webkit-appearance: none;
+            margin: 0;
+            
           }
         }
       }
@@ -573,7 +591,7 @@ main {
   }
 }
 
-//@media
+//ここからが@mediaです
 @media screen and (min-width: 768px) {
   .single-container {
     padding: 0 0 0px;
@@ -695,4 +713,4 @@ main {
     display: block;
   }
 }
-//@media
+

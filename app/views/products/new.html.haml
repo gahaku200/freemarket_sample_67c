@@ -1,9 +1,7 @@
 %bodybody
   .single-container
-    %header.single-header
-      %h1
-        = link_to '#' do
-          = image_tag src='logo.png', alt: 'FURIMA'
+    = render "header"
+
     %main.single-main
       %section.l-single-container.buy-item-container
         #sell-container
@@ -17,45 +15,49 @@
                       出品画像
                       %span.form-require 必須
                     %p 最大10枚までアップロードできます
-                    .sell-dropbox-container.clearfix.state-image-number-10
-                      .sell-upload-items-container
-                        .sell-upload-items.have-item-0
-                          %ul
-                    %label.sell-upload-drop-box.have-item-0
-                      %pre.visible-pc
-                        :preserve
+                    .drop-zone
+                      %label.sell-box__img--input
+                        %p
                           ドラッグアンドドロップ
+                          %br
                           またはクリックしてファイルをアップロード
-                        = icon('fa', 'camera', class: 'icon-camera')
+                          = f.fields_for :images do |i|
+                            = i.file_field :image, multiple: true, id: 'sell-img', name: 'images[image][]'
                   .sell-content
                     .form-group
                       %label
                         商品名
                         %span.form-require 必須
                       %div
-                        = f.text_field :name, placeholder: "商品名 (必須40文字まで)", class: ".input-default", required: true
+                        = f.text_field :name, placeholder: '商品名 (必須40文字まで)', class: 'input-default', required: true
                     .form-group
                       %label
                         商品の説明
                         %span.form-require 必須
-                      = f.text_area :description, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class:".textarea-default",required: true
+                      = f.text_area :description, placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', class:'textarea-default',required: true
                   .sell-content.clearfix
                     %h3.sell-sub-head 商品の詳細
                     .sell-form-box
                       .form-group
                         %label
                           カテゴリー
-                          %span.form-require 必須
-                        %div
-                          .select-wrap
-                            = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
-                            = f.select :category_id, Category.all.map { |category| [category.name, category.id] }, class: 'select-default'
+                          %span.form-require 必須       
+                        .select-categories-form
+                    .product-text-form__category.sell-form-box
+                      .actions
+                        = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
+                      .form-group
+                        = f.fields_for :brand do |brand|
+                          = brand.label "ブランド"
+                          %span.form-require-gray 任意
+                          %div
+                            = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
                       .form-group
                         %label
                           商品の状態
                           %span.form-require 必須
                         .select-wrap
-                          = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
+                          %i.icon-arrow-bottom.fas.fa-angle-down
                           = f.collection_select :status_id, Status.all, :id, :name, {}, class: 'select-default'
                   .sell-content.clearfix
                     %h3.sell-sub-head 配送について
@@ -65,21 +67,21 @@
                           配送料の負担
                           %span.form-require 必須
                         .select-wrap
-                          = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
+                          %i.icon-arrow-bottom.fas.fa-angle-down
                           = f.collection_select :delivery_charge_id, DeliveryCharge.all, :id, :name, {}, class: 'select-default'
                       .form-group
                         %label
                           発送元の地域
                           %span.form-require 必須
                         .select-wrap
-                          = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
+                          %i.icon-arrow-bottom.fas.fa-angle-down
                           = f.collection_select :ship_from_id, ShipFrom.all, :id, :name, {}, class: 'select-default'
                       .form-group
                         %label
                           発送までの日数
                           %span.form-require 必須
                         .select-wrap
-                          = icon('fa', 'angle-down', class: 'icon-arrow-bottom')
+                          %i.icon-arrow-bottom.fas.fa-angle-down
                           = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :name, {}, class: 'select-default'
                   .sell-content.clearfix
                     %h3.sell-sub-head 販売価格(300〜9,999,999)
@@ -91,17 +93,16 @@
                               価格
                               %span.form-require 必須
                             .l-right.sell-price-input
-                              %p
-                                ¥
+                              ¥
                               %div
-                                = f.number_field :price, class: "input-default", placeholder: "例） 300", required: true
+                                = f.number_field :price, class: 'price-flex__input', placeholder: '例） 300', required: true
                         %li.clearfix
                           .l-left
                             販売手数料 (10%)
-                          .l-right -
+                          %p.result-fee -
                         %li.clearfix.bold
                           .l-left 販売利益
-                          .l-right -
+                          %p.result-profit -
                   .modal{role: 'dialog', tabindex: '-1'}
                     .modal-inner
                   .sell-content.sell-btn-box
@@ -119,19 +120,7 @@
                         また、出品をもちまして
                         = link_to '加盟店規約', '#', target:'_blank'
                         に同意したことになります。
-                    =f.submit class: "btn-default.btn-red", value: "出品する" ;
+                    =f.submit class: 'btn-default.btn-red', value: '出品する' ;
                     %a.btn-default.btn-gray もどる
                 .overlay
-    %footer.single-footer
-      %nav
-        %ul.clearfix
-          %li
-            = link_to 'プライバシーポリシー', '#'
-          %li
-            = link_to 'メルカリ利用規約', '#'
-          %li
-            = link_to '特定商取引に関する表記', '#'
-      = link_to '#', class:'single-footer-logo' do
-        = image_tag src='logologo.png', alt: 'FURIMA', class: 'footer_img'
-      %p
-        %small © FURIMA, Inc.
+    = render "footer"
