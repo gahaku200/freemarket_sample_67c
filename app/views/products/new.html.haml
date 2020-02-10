@@ -47,11 +47,12 @@
                       .actions
                         = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
                       .form-group
-                        = f.fields_for :brand do |brand|
-                          = brand.label "ブランド"
+                        %label
+                          ブランド
                           %span.form-require-gray 任意
-                          %div
-                            = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
+                        .select-wrap
+                          %i.icon-arrow-bottom.fas.fa-angle-down
+                          = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---" }, class: 'select-default'
                       .form-group
                         %label
                           商品の状態
@@ -120,7 +121,7 @@
                         また、出品をもちまして
                         = link_to '加盟店規約', '#', target:'_blank'
                         に同意したことになります。
-                    =f.submit class: 'btn-default.btn-red', value: '出品する' ;
-                    %a.btn-default.btn-gray もどる
+                    =f.submit class: 'btn-default btn-red', value: '出品する' ;
+                    = link_to 'もどる', root_path,class:"btn-default btn-gray"
                 .overlay
     = render "footer"

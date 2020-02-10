@@ -3,6 +3,12 @@ class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :select_registrations]
 
   def index
+    @images =Image.all
+    @products = Product.product
+    @products_ladies = Product.ladies
+    @products_mens = Product.mens
+    @products_test = Product.tests
+
   end
 
   def select_registrations
@@ -12,7 +18,6 @@ class ProductsController < ApplicationController
     @parents = Category.all.order("id ASC").limit(13)
     @product = Product.new
     @product.images.new
-    @product.build_brand
   end
 
    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
@@ -40,7 +45,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,brand_attributes: [:id, :name]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,:brand_id).merge(seller_id: current_user.id)
   end
 
   def move_to_index
