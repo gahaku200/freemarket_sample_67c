@@ -33,18 +33,19 @@
           現在商品はありません。
       - else
         - @products_ladies.each do |product|
-          = link_to products_path, class: 'main__center__products__product' do
-            - @images.each do |image|
-              - if product.id == image.product_id
-                = image_tag "#{image.image}", class: 'main__center__products__product__image'
-                - break
-            .productLists__body
-              .productLists__body__name 
-                = product.name
-              .productLists__body__price
-                = "#{product.price}円" 
-              .productLists__body__tax
-                （税込）
+          - if product.buyer_id == nil
+            = link_to products_path, class: 'main__center__products__product' do
+              - @images.each do |image|
+                - if product.id == image.product_id
+                  = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                  - break
+              .productLists__body
+                .productLists__body__name 
+                  = product.name
+                .productLists__body__price
+                  = "#{product.price}円" 
+                .productLists__body__tax
+                  （税込）
 
 %section.pickupContent
   %h2.head メンズ新着アイテム
@@ -58,18 +59,19 @@
           現在商品はありません。
       - else
         - @products_mens.each do |product|
-          = link_to products_path, class: 'main__center__products__product' do
-            - @images.each do |image|
-              - if product.id == image.product_id
-                = image_tag "#{image.image}", class: 'main__center__products__product__image'
-                - break
-            .productLists__body
-              .productLists__body__name 
-                = product.name
-              .productLists__body__price
-                = "#{product.price}円" 
-              .productLists__body__tax
-                （税込）
+          - if product.buyer_id == nil
+            = link_to products_path, class: 'main__center__products__product' do
+              - @images.each do |image|
+                - if product.id == image.product_id
+                  = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                  - break
+              .productLists__body
+                .productLists__body__name 
+                  = product.name
+                .productLists__body__price
+                  = "#{product.price}円" 
+                .productLists__body__tax
+                  （税込）
     
 %section.pickupContent
   %h2.head ピックアップブランド
@@ -83,15 +85,16 @@
           現在商品はありません。
       - else
         - @products_test.each do |product|
-          = link_to products_path, class: 'main__center__products__product' do
-            - @images.each do |image|
-              - if product.id == image.product_id
-                = image_tag "#{image.image}", class: 'main__center__products__product__image'
-                - break
-            .productLists__body
-              .productLists__body__name 
-                = product.name
-              .productLists__body__price
-                = "#{product.price}円" 
-              .productLists__body__tax
-                （税込）
+          - if product.buyer_id == nil
+            = link_to products_path, class: 'main__center__products__product' do
+              - @images.each do |image|
+                - if product.id == image.product_id
+                  = image_tag "#{image.image}", class: 'main__center__products__product__image'
+                  - break
+              .productLists__body
+                .productLists__body__name 
+                  = product.name
+                .productLists__body__price
+                  = "#{product.price}円" 
+                .productLists__body__tax
+                  （税込）
