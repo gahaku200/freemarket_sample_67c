@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root "products#index"
   resources :products, only: [:index, :new, :create] do
     collection do
+      get :select_registrations
       get 'category_children' 
       get 'category_grandchildren'
       get 'get_category_children', defaults: { format: 'json' }

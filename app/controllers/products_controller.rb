@@ -1,8 +1,11 @@
 class ProductsController < ApplicationController
 
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :select_registrations]
 
   def index
+  end
+
+  def select_registrations
   end
 
   def new
@@ -49,6 +52,5 @@ class ProductsController < ApplicationController
     @default_child_categories = @parent_categories.first.children
     @default_child_child_childcategories = @default_child_categories.first.children
   end
-
 
 end

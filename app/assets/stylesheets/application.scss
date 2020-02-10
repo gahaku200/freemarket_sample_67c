@@ -1,6 +1,11 @@
 @import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "devise/rs-header-footer";
+@import "devise/sessions_new";
+@import "devise/select_registrations";
+@import "devise/registrations_new";
+@import "devise/registrations_new_address";
 @import "mixin/mixin";
 @import "modules/products";
 @import "sell";

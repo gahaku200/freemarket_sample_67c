@@ -1,0 +1,89 @@
+.register{
+  background-color: white;
+  height: 144px;
+  margin: auto;
+  padding: 40px 64px;
+  text-align: center;
+  width: 456px;
+  &__new{
+    background-color: #0099e8;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    line-height: 42px;
+    margin-top: 8px;
+  }
+}
+
+.account{
+  background-color: white;
+  font-size: 14px;
+  height: 181px;
+  line-height: 50px;
+  margin: auto;
+  margin-top: 1px;
+  padding: 32px 64px;
+  text-align: center;
+  width: 456px;
+  &__facebook{
+    background-color: #385185;
+    border: 1px solid #385185;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    .fab{
+      font-size: 30px;
+      left: 15px;
+      position: absolute;
+      top: 10px;
+    }
+  }
+
+  &__google{
+    border: #979797 solid 1px;
+    cursor: pointer;
+    margin-top: 16px;
+    position: relative;
+    .fab{
+      color: green;
+      font-size: 30px;
+      left: 15px;
+      position: absolute;
+      top: 10px;
+    } 
+  }
+}
+
+.sessions{
+  background-color: white;
+  margin: auto;
+  padding: 24px 64px 32px;
+  width: 456px;
+  #user_email{
+    border-radius: 4px;
+    height: 48px;
+    padding: 10px 16px 8px;
+    width: 328px;
+  }
+
+  #user_password{
+    border-radius: 4px;
+    height: 48px;
+    padding: 10px 16px 8px;
+    margin-top: 24px;
+    width: 328px;
+  }
+
+  .submit_btn{
+    background-color: #ea352d;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    line-height: 50px;
+    margin: auto;
+    margin-top: 24px;
+    width: 100%;
+  }
+}
