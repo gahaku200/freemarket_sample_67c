@@ -8,14 +8,14 @@
           .product-box__body
             %ul
               %li
-                %img{:src => "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"}/
+                = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
                 %ul
                   %li
-                    %img{:height => "75", :src => "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", :width => "75"}/
+                    = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png',height: '75', width: '75'
                   %li
-                    %img{:height => "75", :src => "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png", :width => "75"}/
+                    = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png',height: '75', width: '75'
                   %li
-                    %img{:height => "75", :src => "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png", :width => "75"}/
+                    = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png',height: '75', width: '75'
           .product-box__price
             %span
               ¥30000
