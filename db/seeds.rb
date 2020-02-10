@@ -1,3 +1,9 @@
+test = Brand.create(name: "テスト")
+chanel = Brand.create(name: "シャネル")
+vuitton = Brand.create(name: "ルイ・ヴィトン")
+nike = Brand.create(name: "ナイキ")
+
+
 ladys = Category.create(name: "レディース")
 mens = Category.create(name: "メンズ")
 kids = Category.create(name: "ベビー・キッズ")

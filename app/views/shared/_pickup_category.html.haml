@@ -17,50 +17,46 @@
             = "#{product.price}円" 
           .productLists__body__tax
             （税込）
+
+%section.pickupContent
+  %h2.head レディース新着アイテム
+  .productBox
+    .productHead
+      = link_to '#' do
+        %h3.title 
+        -# ここからスタート
+    .productLists
+      - @products_ladies.each do |product|
+        = link_to products_path, class: 'main__center__products__product' do
+          - @images.each do |image|
+            - if product.id == image.product_id
+              = image_tag "#{image.image}", class: 'main__center__products__product__image'
+              - break
+          .productLists__body
+            .productLists__body__name 
+              = product.name
+            .productLists__body__price
+              = "#{product.price}円" 
+            .productLists__body__tax
+              （税込）
     
 %section.pickupContent
   %h2.head ピックアップブランド
   .productBox
     .productHead
       = link_to '#' do
-        %h3.title アーカイバ
+        %h3.title テスト
     .productLists
-      .productList
-        = link_to '/products/3' do
-          %figure.productList--img
-            = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
-          .productList--body
-            %h3.name product3
-            .details
-              %ul
-                %li 30000円
-                %li
-                  = icon('fa', 'star', class: 'likeIcon')
-                  0
-              %p (税込)
-      .productList
-        = link_to '/products/2' do
-          %figure.productList--img
-            = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
-          .productList--body
-            %h3.name product2
-            .details
-              %ul
-                %li 20000円
-                %l
-                  = icon('fa', 'star', class: 'likeIcon')
-                  0
-              %p (税込)
-      .productList
-        = link_to '/products/1' do
-          %figure.productList--img
-            = image_tag src='https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
-          .productList--body
-            %h3.name product1
-            .details
-              %ul
-                %li 10000円
-                %li
-                  = icon('fa', 'star', class: 'likeIcon')
-                  0
-              %p (税込)
+      - @products.each do |product|
+        = link_to products_path, class: 'main__center__products__product' do
+          - @images.each do |image|
+            - if product.id == image.product_id
+              = image_tag "#{image.image}", class: 'main__center__products__product__image'
+              - break
+          .productLists__body
+            .productLists__body__name 
+              = product.name
+            .productLists__body__price
+              = "#{product.price}円" 
+            .productLists__body__tax
+              （税込）
