@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   root "products#index"
-  resources :products, only: [:index, :new, :create] do
+  resources :products, only: [:index, :new, :create, :show] do
     collection do
       get :select_registrations
       get 'category_children' 
