@@ -3,7 +3,7 @@
     %h2.l-chapter-head クレジットカード情報入力
     %form#add-card-form.l-single-inner.registration-form
       .l-single-content
-        = form_tag(make_cards_path, method: :post, id: 'charge-form', name: "inputForm") do |f|
+        = form_tag(make_cards_path, method: :post, id: 'charge-form', name: "inputForm") do
           .form-group
             %label カード番号
             %span.form-require 必須
