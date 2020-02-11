@@ -1,17 +1,20 @@
 $(function(){
 
-  var submit = document.getElementById("token_submit");
+  var submit = document.getElementById("#token_submit");
+  // token_submitを取得
   // console.log(submit)
   
   if ( submit != null) {
-    submit.addEventListener('click', function(e){  // 追加するボタンが押されたらイベント発火
+    submit.addEventListener('click', function(e){  
+      // 追加するボタンが押されたらイベント発火（無名関数）
       e.preventDefault();  // ボタンを一旦無効化
       Payjp.setPublicKey("pk_test_45facb6738296a9cb4f5c7f0");
+      // 公開キーをセット
       var card = {  // 入力されたカード情報を取得
-        number: document.getElementById("card_number").value,
-        exp_month: document.getElementById("exp_month").value,
-        exp_year: document.getElementById("exp_year").value,
-        cvc: document.getElementById("cvc").value
+        number: document.getElementById("#card_number").value,
+        exp_month: document.getElementById("#exp_month").value,
+        exp_year: document.getElementById("#exp_year").value,
+        cvc: document.getElementById("#cvc").value
       };
       if (card.number == "", card.exp_month == "1", card.exp_year == "2019", card.cvc == "") {
         alert("カード情報が入力されていません。"); // 送られた値がデフォルト値だった場合
