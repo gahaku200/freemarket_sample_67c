@@ -1,57 +1,46 @@
 class CardsController < ApplicationController
   require "payjp"
 
-  before_action :set_card, only: [:index, :delete]
-
   def new
-    card = Card.where(user_id: current_user.id)
-    if card.present?
-      redirect_to card_index_path
-    end
   end
 
-  def index #Cardのデータpayjpに送り情報を取り出します
-    if @card.blank?
-      redirect_to new_card_path
-    else
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(@card.customer_id)
-      @default_card_information = customer.cards.retrieve(@card.card_id)
-    end
-  end
-
-  def pay #payjpとCardのデータベース作成を実施します
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY) 
+  def make #payjpとCardのデータベース作成を実施します。
+    Payjp.api_key = sk_test_5254de2e5d5a8edd4f73c033
     if params['payjp-token'].blank?
-      redirect_to new_card_path
+       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(
-      description: '登録テスト', 
+      description: '登録テスト', #なくてもOK
       card: params['payjp-token'],
       metadata: {user_id: current_user.id}
-      ) 
-      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      
-      if @card.save
-        redirect_to card_index_path
-      else
-        redirect_to new_card_path
-      end
+      ) #念の為metadataにuser_idを入れましたがなくてもOK
+      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card) #user_idとcustomer_idとcard_idを持ったCard.newを変数に代入。
+      @card.save #保存
+      redirect_to @card #詳細画面へリダイレクト
+    end
+  end
+
+  def show #Cardのデータをpayjpに送り情報を取り出します
+    @card = Card.where(user_id: current_user.id).first #テーブルからpayjpの顧客ID(アクセスキー)を検索
+    if @card.blank?
+      redirect_to action: "new" 
+    else
+      Payjp.api_key = sk_test_5254de2e5d5a8edd4f73c033
+      customer = Payjp::Customer.retrieve(@card.customer_id) #保管した顧客ID（アクセスキー）でpayjpから情報取得
+      @default_card_information = customer.cards.retrieve(@card.card_id) #保管したカードIDでpayjpからカード情報取得、カード情報表示のためインスタンス変数に代入
     end
   end
 
   def delete #PayjpとCardデータベースを削除します
-    if @card.present?
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(@card.customer_id)
-      customer.delete
-      @card.delete
-    end
-    redirect_to new_card_path
-  end
+    card = Card.where(user_id: current_user.id).first #テーブルからpayjpの顧客ID(アクセスキー)を検索
+    if card.blank?
+    else
+      Payjp.api_key = sk_test_5254de2e5d5a8edd4f73c033
 
-  private
-  def set_card
-    @card = Card.find_by(user_id: current_user.id)
+      customer = Payjp::Customer.retrieve(card.customer_id) #保管した顧客ID（アクセスキー）でpayjpから情報取得
+      customer.delete #payjp側の顧客情報を削除
+      card.delete #DBのカード情報(payjpへのアクセスキー)を削除
+    end
+      redirect_to action: "new"
   end
 end
