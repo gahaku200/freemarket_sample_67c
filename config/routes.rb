@@ -23,5 +23,19 @@ Rails.application.routes.draw do
   get '/mypage/card/credit', to: 'mypage#credit'
   get '/mypage/logout', to: 'mypage#logout'
 
-  resources :buys, only: [:index]
+  resources :buys, only: [:new] do
+    member do
+      get 'index', to: 'buys#index'
+      post 'pay', to: 'buys#pay'
+      get 'done', to: 'buys#done'
+    end
+  end
+
+  resources :cards, only: [:new,:show] do
+    collection do
+      post 'make', to: 'cards#make'
+      post 'delete', to: 'cards#delete'
+    end
+  end
+
 end
