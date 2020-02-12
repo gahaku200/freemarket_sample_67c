@@ -38,6 +38,18 @@ class CardsController < ApplicationController
       redirect_to action: "new"
   end
 
+  def destroy
+    card = Card.where(user_id: current_user.id).first
+  if card.blank?
+  else
+    Payjp.api_key = "sk_test_5254de2e5d5a8edd4f73c033"
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    customer.delete
+    card.delete
+  end
+    redirect_to new_card_path
+  end
+
   def show #Cardのデータpayjpに送り情報を取り出します
     card = Card.where(user_id: current_user.id).first
     if card.blank?
