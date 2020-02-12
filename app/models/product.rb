@@ -11,8 +11,8 @@ class Product < ApplicationRecord
   belongs_to :buyer, class_name: "User", optional: true
 
 
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
   validates :status_id, presence: true
   validates :delivery_charge_id, presence: true
   validates :ship_from_id, presence: true
@@ -25,6 +25,9 @@ class Product < ApplicationRecord
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
+
+  validates :images, length: { minimum: 1, maximum: 10}
+
   scope :image, -> { includes(:images) }
   scope :buyer, -> { where(buyer_id: nil) }
   scope :lady, -> { where(category_id: 45..148) }
@@ -35,5 +38,4 @@ class Product < ApplicationRecord
   scope :ladies, -> { image.lady.sorted }
   scope :mens, -> { image.men.sorted }
   scope :tests, -> { image.brand_test.sorted }
-
 end
