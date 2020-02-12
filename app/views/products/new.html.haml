@@ -1,9 +1,7 @@
 %bodybody
   .single-container
-    %header.single-header
-      %h1
-        = link_to '#' do
-          = image_tag src='logo.png', alt: 'FURIMA'
+    = render "header"
+
     %main.single-main
       %section.l-single-container.buy-item-container
         #sell-container
@@ -64,11 +62,12 @@
                       .actions
                         = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
                       .form-group
-                        = f.fields_for :brand do |brand|
-                          = brand.label "ブランド"
+                        %label
+                          ブランド
                           %span.form-require-gray 任意
-                          %div
-                            = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
+                        .select-wrap
+                          %i.icon-arrow-bottom.fas.fa-angle-down
+                          = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---" }, class: 'select-default'
                       .form-group
                         %label
                           商品の状態
@@ -138,19 +137,7 @@
                         また、出品をもちまして
                         = link_to '加盟店規約', '#', target:'_blank'
                         に同意したことになります。
-                    =f.submit class: 'btn-default.btn-red', value: '出品する' ;
-                    %a.btn-default.btn-gray もどる
+                    =f.submit class: 'btn-default btn-red', value: '出品する' ;
+                    = link_to 'もどる', root_path,class:"btn-default btn-gray"
                 .overlay
-    %footer.single-footer
-      %nav
-        %ul.clearfix
-          %li
-            = link_to 'プライバシーポリシー', '#'
-          %li
-            = link_to 'メルカリ利用規約', '#'
-          %li
-            = link_to '特定商取引に関する表記', '#'
-      = link_to '#', class:'single-footer-logo' do
-        = image_tag src='logologo.png', alt: 'FURIMA', class: 'footer_img'
-      %p
-        %small © FURIMA, Inc.
+    = render "footer"

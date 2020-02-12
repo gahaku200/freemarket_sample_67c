@@ -1,50 +1,50 @@
-%h2 ユーザー情報登録
-= form_for(@user, url: user_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name
-  .field
-    = f.label :first_name_kana
-    %br/
-    = f.text_field :first_name_kana
-  .field
-    = f.label :last_name_kana
-    %br/
-    = f.text_field :last_name_kana
-  .field
-    = f.label :birthday
-    %br/
-    year
-    = f.number_field :birthday_year
-    month
-    = f.number_field :birthday_month
-    day
-    = f.number_field :birthday_day
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Next"
-= render "devise/shared/links"
+= render "shared/rs-header"
+.register-title 会員情報入力
+.register-main
+  = form_for(@user, url: user_registration_path) do |f|
+    -# = render "devise/shared/error_messages", resource: @user
+    .field
+      = f.label "ニックネーム"
+      %span.caution 必須
+      %br/
+      = f.text_field :nickname
+    .field
+      = f.label "お名前（全角）"
+      %span.caution 必須
+      %br/
+      = f.text_field :first_name, placeholder: "姓"
+      = f.text_field :last_name, placeholder: "名"
+    .field
+      = f.label "お名前ひらがな（全角）"
+      %span.caution 必須
+      %br/
+      = f.text_field :first_name_kana, placeholder: "せい"
+      = f.text_field :last_name_kana, placeholder: "めい"
+    .field
+      = f.label "生年月日"
+      %span.caution 必須
+      %br/
+      = f.number_field :birthday_year
+      年
+      = f.number_field :birthday_month
+      月
+      = f.number_field :birthday_day
+      日
+    .field
+      = f.label "メールアドレス"
+      %span.caution 必須
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可"
+    .field
+      = f.label "パスワード"
+      %span.caution 必須
+      %br/
+      = f.password_field :password, autocomplete: "new-password", placeholder: "７文字以上の半角英数字"
+    .field
+      = f.label "パスワード（確認用）"
+      %span.caution 必須
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "上の入力と一致させて下さい"
+    = f.submit "次へ進む", class:"next_btn"
+  = render "devise/shared/links"
+= render "shared/rs-footer"

@@ -1,0 +1,119 @@
+.pickupContent {
+    padding: 80px 0 0;
+    background-color: #f8f8f8;
+    height: 100%;
+    .head {
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+    .productBox {
+      .productHead {
+        text-align: center;
+        a {
+          font-size: 24px;
+          text-decoration: none;
+          color: #3CCACE;
+          h3 {
+            font-weight: bold;
+          }
+        }
+      }
+      .productLists {
+        width: 780px;
+        margin: 26px auto;
+        display: flex;
+        justify-content: space-around;
+        &__not{
+          text-align: center;
+          font-size: 26px;
+          line-height: 1.4;
+          font-weight: bold;
+          margin-top: 25px;
+          padding: 15px;
+          background-color: white;
+        }
+
+        a {
+          text-decoration: none;
+          position: relative;
+          .productLists__body {
+            background-color: white;
+            color: #333;
+            padding: 16px;
+            &__name {
+              overflow: hidden;
+              line-height: 1.5;
+              font-size: 16px;
+              text-align: left;
+            }
+            &__price{
+              overflow: hidden;
+              font-size: 16px;
+              text-align: left;
+            }
+            &__tax{
+              overflow: hidden;
+              font-size: 10px;
+              text-align: left;
+            }
+          }
+        }
+        
+        .productList {
+          width: 220px;
+          display: inline-block;
+          float: left;
+          a {
+            background-color: #fff;
+            display: inline-block;
+            .productList--body {
+              background-color: white;
+              color: #333;
+              padding: 16px;
+              .name {
+                overflow: hidden;
+                line-height: 1.5;
+                font-size: 16px;
+                text-align: left;
+              }
+              .details {
+                font-size: 16px;
+                ul {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                }
+                p {
+                  font-size: 10px;
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .pickupContent:last-child {
+    padding-bottom: 80px;
+  }
+  .main__center__products {
+
+    &__product {
+      width: 220x;
+      height: 252px;
+      margin: 10px;
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      position: relative;
+  
+      &__image {
+        width: 220px;
+        height: 220px;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+      } 
+    }
+  }
