@@ -24,20 +24,16 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      params[:images][:image].each do |image|
-        @product.images.create!(image: image, product_id: @product.id)
-      end
-      redirect_to root_path, notice: "出品が完了しました"
+      redirect_to root_path
     else
-      redirect_to sell_products_path
-
+      render :new
     end
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,brand_attributes: [:id, :name]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,brand_attributes: [:id, :name],  images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def move_to_index
