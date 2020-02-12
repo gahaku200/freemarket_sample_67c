@@ -19,23 +19,11 @@ class CardsController < ApplicationController
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "show"
+        redirect_to done_cards_path
       else
         redirect_to action: "pay"
       end
     end
-  end
-
-  def delete #PayjpとCardデータベースを削除します
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-    else
-      Payjp.api_key = "sk_test_5254de2e5d5a8edd4f73c033"
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
-      redirect_to action: "new"
   end
 
   def destroy
@@ -47,7 +35,7 @@ class CardsController < ApplicationController
     customer.delete
     card.delete
   end
-    redirect_to new_card_path
+  redirect_to mypage_path
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
@@ -59,5 +47,8 @@ class CardsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
+  end
+
+  def done
   end
 end

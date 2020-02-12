@@ -1,3 +1,20 @@
+.card-container{
+  margin: 24px auto 0;
+  padding-bottom: 40px;
+
+}
+
+@media screen and (min-width: 768px){
+  .card-container{
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1068px){
+  .card-container{
+    margin: 40px auto 0;
+  }
+}
 .l-chapter-container {
 
   * {

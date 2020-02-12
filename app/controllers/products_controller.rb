@@ -38,7 +38,6 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: "出品が完了しました"
     else
       redirect_to sell_products_path
-
     end
   end
 
@@ -60,5 +59,5 @@ class ProductsController < ApplicationController
     @default_child_categories = @parent_categories.first.children
     @default_child_child_childcategories = @default_child_categories.first.children
   end
-
+  
 end
