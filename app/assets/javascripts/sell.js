@@ -131,9 +131,6 @@ $(document).on('turbolinks:load', ()=> {
       },
       //エラーメッセージ出力場所設定
       errorPlacement: function(error, element){
-        console.log(error);
-        console.log(element);
-        // alert("hello");
         // 画像と商品価格に関してのエラー文はデフォルトだと変な場所に出力される。その為場所を指定している。
         if(element.attr("name")=="product[images_attributes][0][image]")
         {
