@@ -61,8 +61,7 @@ $(document).on('turbolinks:load', ()=> {
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
     
-    var number = Number($(this).data('index'));
-    // console.log(number)
+    var number = Number($(this).data('index'));￥
     
     const upload_btn = $(`#product_images_attributes_${number}_image`);
     if(upload_btn) upload_btn.remove(); // アップロードボタンが存在すれば削除
