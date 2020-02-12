@@ -1,7 +1,6 @@
 %bodybody
-  .single-container
+  .single-container2
     = render "header"
-
     %main.single-main
       %section.l-single-container.buy-item-container
         #sell-container
@@ -9,7 +8,6 @@
             .sell-container-inner
               = form_with(model: @product, html: { class: "formsample"}) do |f|
                 %h2.l-single-head 商品の情報を入力
-                = render 'layouts/error2_messages', model: f.object
                 .sell-form
                   .sell-upload-box
                     %h3.sell-upload-head
@@ -109,7 +107,7 @@
                               価格
                               %span.form-require 必須
                             .l-right.sell-price-input
-                              ¥
+                              .l-right.sell-price-input.en ¥
                               %div
                                 = f.number_field :price, class: 'price-flex__input', placeholder: '例） 300', required: true
                           .price_error

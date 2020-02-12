@@ -108,7 +108,7 @@ img {
   margin: 40px auto 0;
 }
 
-.single-container {
+.single-container2 {
   padding: 0 0 25px;
 }
 .single-header {
@@ -191,14 +191,6 @@ main {
                     
                   }
                   .visible-pc {
-                  }
-                  .icon-camera {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    -webkit-transform: translate(-50%, -50%);
-                    transform: translate(-50%, -50%);
-                    font-size: 14px;
                   }
                 }
               }
@@ -464,6 +456,8 @@ main {
           width: 50%;
           font-family: 'Source Sans Pro';
           position: relative;
+          display: flex;
+          justify-content: flex-end;
           p {
             position: absolute;
             bottom: 8px;
@@ -595,7 +589,7 @@ main {
 
 //ここからが@mediaです
 @media screen and (min-width: 768px) {
-  .single-container {
+  .single-container2 {
     padding: 0 0 0px;
   }
 }
@@ -772,4 +766,17 @@ main {
 
 .error {
   color: red;
+}
+
+.l-right.sell-price-input.en {
+  text-align: center;
+  margin: auto;
+  width: auto;
+}
+
+.result-fee {
+  float: right;
+}
+.result-profit {
+  float: right;
 }
