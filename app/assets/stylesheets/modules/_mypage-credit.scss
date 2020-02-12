@@ -1,4 +1,10 @@
 .l-chapter-container {
+
+  * {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
   margin: 40px 0 0;
   background: #fff;
 
@@ -79,6 +85,8 @@
 
   .form-group {
     margin: 40px 0 0;
+    text-align: left;
+    
 
     &:first-child {
       margin: 0;
@@ -113,7 +121,6 @@
       border-radius: 2px;
       color: #fff;
       font-size: 12px;
-      vertical-align: top;
       background: #ea352d;
     }
   }
