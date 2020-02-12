@@ -1,0 +1,33 @@
+.rs-header{
+  display: flex;
+  height: 128px;
+  justify-content: center;
+  .rs-logo{
+    height: 49px;
+    margin-top: 40px;
+    width: 185px;
+  }
+}
+
+.rs-footer{
+  height: 200px;
+  &__box{
+    margin: auto;
+    padding-top: 40px;
+    text-align: center;
+    width: 456px;
+    .clearfix{
+      display: flex;
+      font-size: 12px;
+      justify-content: space-between;
+      li{
+        margin: auto;
+      }
+    }
+    &__logo{
+      height: 70px;
+      margin-top: 40px;
+      width: 70px;
+    }
+  }
+}
