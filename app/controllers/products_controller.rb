@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :move_to_index, except: [:index, :select_registrations]
+  before_action :move_to_index, except: [:index, :select_registrations, :show]
 
   def index
     @images =Image.all
@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
     @products_ladies = Product.ladies
     @products_mens = Product.mens
     @products_test = Product.tests
-
   end
 
   def select_registrations
@@ -38,11 +37,12 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: "出品が完了しました"
     else
       redirect_to sell_products_path
-
     end
   end
 
   def show
+    @product = Product.find(params[:id])
+    @product_images = Image.where(product_id: @product).limit(3)
   end
 
   private

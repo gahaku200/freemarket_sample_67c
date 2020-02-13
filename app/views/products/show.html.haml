@@ -9,7 +9,8 @@
           = icon 'fas', 'chevron-right'
       %li
         = link_to '#', class: 'bread-crumbs-mypage' do
-          %span 商品ページ（仮）
+          %span
+            = @product.name
   
   = render "detail"
 
