@@ -86,6 +86,12 @@ $(document).on('turbolinks:load', ()=> {
     });
   });
 
+  $(document).ready(function(){    
+    $.validator.setDefaults({
+        ignore: []
+    });
+  });
+
   // 出品ページのフォームにバリデーションをかける
   $(function(){
     //form指定
@@ -134,7 +140,7 @@ $(document).on('turbolinks:load', ()=> {
         // 画像と商品価格に関してのエラー文はデフォルトだと変な場所に出力される。その為場所を指定している。
         if(element.attr("name")=="product[images_attributes][0][image]")
         {
-          error.insertAfter(".l-single-head");	
+          error.insertAfter(".js-file_group");	
         }
         else if(element.attr("name")=="product[price]")
         {
