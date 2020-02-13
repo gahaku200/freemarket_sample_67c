@@ -81,9 +81,9 @@
               display: flex;
               flex-direction: column;
               width: 560px;
-              img {
-                object-fit: cover;
+              .product_images_top{
                 height: 346px;
+                width: 560px;
               }
 
               ul {
@@ -95,9 +95,9 @@
                   width: 25%;
                   margin: 0 10px 0 0;
 
-                  img {
-                    object-fit: cover;
+                  .product_images{
                     height: 87px;
+                    width: 140px;    
                   }
                 }
               }
@@ -198,6 +198,17 @@
                   }
                 }
               }
+            }
+
+            .product_btn{
+              color: #ffffff;
+              background-color: #3ccace;
+              display: block;
+              font-size: 24px;
+              line-height: 60px;
+              margin: auto;
+              margin-top: 16px;
+              text-align: center;
             }
           }
 

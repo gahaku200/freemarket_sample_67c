@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :move_to_index, except: [:index, :select_registrations]
+  before_action :move_to_index, except: [:index, :select_registrations, :show]
 
   def index
     @images =Image.all
@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
     @products_ladies = Product.ladies
     @products_mens = Product.mens
     @products_test = Product.tests
-
   end
 
   def select_registrations
@@ -39,6 +38,8 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @product_images = @product.images.limit(3)
   end
 
   private
