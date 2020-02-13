@@ -38,8 +38,9 @@
                 %tr
                   %th ブランド
                   %td
-                    = link_to '#'  do
-                      = @product.brand.name
+                    - if @product.brand
+                      = link_to '#'  do
+                        = @product.brand.name
                 %tr
                   %th 商品のサイズ
                   %td
