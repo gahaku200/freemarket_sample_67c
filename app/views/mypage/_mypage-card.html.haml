@@ -8,6 +8,6 @@
         %ul.settings-payment-list
       %section.settings-add-card
         .l-single-content
-          = link_to new_card_path, class: 'btn-default btn-blue submit_button' do
+          = link_to new_card_path, data: {"turbolinks" => false}, class: 'btn-default btn-blue submit_button' do
             = icon 'fas', 'credit-card'
             クレジットカードを追加する
