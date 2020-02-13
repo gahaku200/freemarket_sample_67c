@@ -10,6 +10,6 @@ end
 
 # 支払い方法
 crumb :card do
-  link "プロフィール", edit_user_path
+  link "支払い方法", mypage_card_path
   parent :mypage
 end

@@ -1,18 +1,8 @@
 .default-container
   = render "shared/header"
   %nav.bread-crumbs
-    %ul
-      %li
-        = link_to '#', class: 'bread-crumbs-top' do
-          %span フリマ
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'bread-crumbs-mypage' do
-          %span マイページ
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'bread-crumbs-mypage' do
-          %span 支払い方法
+    - breadcrumb :card
+    = render "shared/breadcrumbs"
 
   .l-container.clearfix
     = render "mypage-card"
