@@ -80,10 +80,10 @@
               margin: 16px 0 0;
               display: flex;
               flex-direction: column;
-              width: 560px;
               .product_images_top{
                 height: 346px;
-                width: 560px;
+                width: 346px;
+                margin: auto;
               }
 
               ul {
@@ -96,7 +96,7 @@
                   margin: 0 10px 0 0;
 
                   .product_images{
-                    height: 87px;
+                    height: 140px;
                     width: 140px;    
                   }
                 }
