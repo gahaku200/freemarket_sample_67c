@@ -13,3 +13,9 @@ crumb :card do
   link "支払い方法", mypage_card_path
   parent :mypage
 end
+
+# ログアウト
+crumb :logout do
+  link "ログアウト", mypage_logout_path
+  parent :mypage
+end
