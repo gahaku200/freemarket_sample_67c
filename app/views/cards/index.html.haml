@@ -16,12 +16,12 @@
           = icon 'fas', 'chevron-right'
       %li
         = link_to '#', class: 'bread-crumbs-mypage' do
-          %span クレジットカード情報入力
+          %span クレジットカード情報一覧
 
   .l-container.clearfix
-    = render "mypage-credit"
+    = render "mypage-credit-show"
     
-    = render "mypage-side-card"
+    = render "mypage/mypage-side-card"
     
   %aside.appBanner
     .inner

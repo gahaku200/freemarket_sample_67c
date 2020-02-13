@@ -1,0 +1,45 @@
+.l-content
+  .l-chapter-container
+    %h2.l-chapter-head 
+      クレジットカード情報入力
+      #add-card-form.l-single-inner.registration-form
+        .l-single-content
+          = form_with url: cards_path, method: :post, html: { id: 'charge-form',name: "inputForm" } do |f|
+            .form-group
+              %label カード番号
+              %span.form-require 必須
+              = f.text_field :card_number, type: 'text', class: 'input-default', placeholder: '半角数字のみ', maxlength: "16", id: "card_number"
+              %br
+
+              %ul.signup-card-list
+                %li
+                  = image_tag 'visa.svg',class: 'signup-card-list-icon',size: '49x20'
+                %li
+                  = image_tag 'master-card.svg',class: 'signup-card-list-icon',size: '34x20'
+                %li
+                  = image_tag 'saison-card.svg',class: 'signup-card-list-icon',size: '30x20'
+                %li
+                  = image_tag 'jcb.svg',class: 'signup-card-list-icon',size: '32x20'
+                %li
+                  = image_tag 'american_express.svg',class: 'signup-card-list-icon',size: '21x20'
+                %li
+                  = image_tag 'dinersclub.svg',class: 'signup-card-list-icon',size: '32x20'
+                %li
+                  = image_tag 'discover.svg',class: 'signup-card-list-icon', size: '32x20'
+            .form-group.signup-form-expire
+              %label 有効期限
+              %span.form-require 必須
+              %br/
+              .select-wrap.half
+                = f.select :exp_month, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{} , class: 'select-default',id: 'exp_month'
+                %span 月/
+              .select-wrap.half
+                = f.select :exp_year, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029],["30",2030]],{} , class: 'select-default',id: 'exp_year'
+                %span 年
+                %br
+            .form-group
+              %label セキュリティコード
+              %span.form-require 必須
+              = f.text_field :cvc, type: 'text', class: 'input-default', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4", id: "cvc"
+              #card_token
+              = f.submit '登録する', class: 'btn-default btn-red', id: 'token_submit'
