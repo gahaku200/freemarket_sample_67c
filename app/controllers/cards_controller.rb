@@ -3,11 +3,21 @@ class CardsController < ApplicationController
 
   before_action :set_card
 
-  def new
-    redirect_to action: "show" if @card.present?
+  def index #Cardのデータpayjpに送り情報を取り出します
+    if @card.blank?
+      redirect_to action: "new" 
+    else
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+    end
   end
 
-  def pay #payjpとCardのデータベース作成を実施します。
+  def new
+    redirect_to action: "index" if @card.present?
+  end
+
+  def create #payjpとCardのデータベース作成を実施します。
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     if params['payjp-token'].blank?
       redirect_to action: "new"
@@ -22,7 +32,7 @@ class CardsController < ApplicationController
       if @card.save
         redirect_to done_cards_path
       else
-        redirect_to action: "pay"
+        redirect_to action: "create"
       end
     end
   end
@@ -33,16 +43,6 @@ class CardsController < ApplicationController
     customer.delete
     @card.delete
     redirect_to mypage_path
-  end
-
-  def show #Cardのデータpayjpに送り情報を取り出します
-    if @card.blank?
-      redirect_to action: "new" 
-    else
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(@card.customer_id)
-      @default_card_information = customer.cards.retrieve(@card.card_id)
-    end
   end
 
   def done

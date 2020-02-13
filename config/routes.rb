@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   get '/mypage/card', to: 'mypage#card'
   get '/mypage/logout', to: 'mypage#logout'
 
-  resources :cards, only: [:new, :show, :destroy] do
+  resources :cards, only: [:index,:new,:create, :destroy] do
     collection do
-      post 'show', to: 'cards#show'
-      post 'pay', to: 'cards#pay'
       get 'done', to: 'cards#done'
       get 'completed', to: 'cards#completed'
     end
