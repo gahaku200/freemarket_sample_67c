@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @product_images = Image.where(product_id: @product).limit(3)
+    @product_images = @product.images.limit(3)
   end
 
   private
