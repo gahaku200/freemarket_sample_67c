@@ -1,7 +1,13 @@
 = render "shared/rs-header"
 .create-main
   .register-title
-    登録が完了しました
+    ご利用ありがとうございます。
+    %br
+    登録が完了しました。
+    %br
+    商品の購入にクレジットカードの登録が必要となります。
+    %br
+    下記ボタンより移動ください。
     %br/
-    = link_to "トップへ戻る", root_path
+    = link_to "クレジットカード登録", new_card_path, data: {"turbolinks" => false}
   = render "shared/rs-footer"

@@ -31,12 +31,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      params[:images][:image].each do |image|
-        @product.images.create!(image: image, product_id: @product.id)
-      end
-      redirect_to root_path, notice: "出品が完了しました"
+      redirect_to root_path
     else
-      redirect_to sell_products_path
+      render :new
     end
   end
 
@@ -48,7 +45,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,:brand_id).merge(seller_id: current_user.id)
+    params.require(:product).permit(:name, :description, :status_id,  :delivery_charge_id, :ship_from_id, :delivery_days_id, :price,  :category_id,:brand_id,  images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def move_to_index
@@ -60,5 +57,5 @@ class ProductsController < ApplicationController
     @default_child_categories = @parent_categories.first.children
     @default_child_child_childcategories = @default_child_categories.first.children
   end
-
+  
 end

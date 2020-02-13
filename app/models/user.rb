@@ -15,5 +15,10 @@ class User < ApplicationRecord
   validates :email, format:{ with:/[\w.\-]+@[\w\-]+\.[\w.\-]+/ }, presence:true
 
   has_one :address
-  
+
+  has_many :buyed_items, foreign_key: "buyer_id", class_name: "Product"
+  has_many :saling_items, -> { where("buyer_id is NULL") }, foreign_key: "saler_id", class_name: "Product"
+  has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "saler_id", class_name: "Product"
+  has_many :cards
+
 end

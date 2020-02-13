@@ -1,13 +1,12 @@
 %bodybody
-  .single-container
+  .single-container2
     = render "header"
-
     %main.single-main
       %section.l-single-container.buy-item-container
         #sell-container
           .data-reactroot
             .sell-container-inner
-              = form_with(model: @product) do |f|
+              = form_with(model: @product, html: { class: "formsample"}) do |f|
                 %h2.l-single-head 商品の情報を入力
                 .sell-form
                   .sell-upload-box
@@ -15,14 +14,26 @@
                       出品画像
                       %span.form-require 必須
                     %p 最大10枚までアップロードできます
-                    .drop-zone
-                      %label.sell-box__img--input
-                        %p
-                          ドラッグアンドドロップ
-                          %br
-                          またはクリックしてファイルをアップロード
-                          = f.fields_for :images do |i|
-                            = i.file_field :image, multiple: true, id: 'sell-img', name: 'images[image][]'
+                    #image-box
+                      #previews
+                        - if @product.persisted?
+                          - @product.images.each_with_index do |image, i|
+                            = image_tag image.src.url, data: { index: i }, width: "100px", height: '100px'
+                      = f.fields_for :images do |image|
+                        %label.js-file_group{"data-index" => "#{image.index}"}
+                          = image.file_field :image, class: 'js-file'
+                          %br/
+                          %pre.visible-pc
+                            :preserve
+                              ドラッグアンドドロップ
+                              またはクリックしてファイルをアップロード
+                            %i.icon-camera.fas.fa-camera
+                        - if @product.persisted?
+                          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                      - if @product.persisted?
+                        .js-file_group{"data-index" => "#{@product.images.count}", style: 'display: none'}
+                          = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
+                  .image_error
                   .sell-content
                     .form-group
                       %label
@@ -30,6 +41,8 @@
                         %span.form-require 必須
                       %div
                         = f.text_field :name, placeholder: '商品名 (必須40文字まで)', class: 'input-default', required: true
+                        -if @product.errors.any? 
+                          %p 商品名入れてね
                     .form-group
                       %label
                         商品の説明
@@ -94,9 +107,10 @@
                               価格
                               %span.form-require 必須
                             .l-right.sell-price-input
-                              ¥
+                              .l-right.sell-price-input.en ¥
                               %div
                                 = f.number_field :price, class: 'price-flex__input', placeholder: '例） 300', required: true
+                          .price_error
                         %li.clearfix
                           .l-left
                             販売手数料 (10%)

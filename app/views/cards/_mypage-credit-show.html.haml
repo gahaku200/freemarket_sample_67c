@@ -1,0 +1,20 @@
+.l-content
+  %section.l-chapter-container
+    %h2.l-chapter-head 
+      クレジットカード情報一覧
+      %form#add-card-form.l-single-inner.registration-form
+        .l-single-content
+          = image_tag 'visa.svg',class: 'signup-card-list-icon',size: '49x20'
+          .form-group
+            %label カード番号
+            = "**** **** **** " + @default_card_information.last4
+            %br
+            %label 有効期限
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
+            %br
+            = link_to "削除する", card_path(@card.id), method: :delete,class: "btn-default btn-red"
+            
+
+                 
