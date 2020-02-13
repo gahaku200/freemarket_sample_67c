@@ -28,14 +28,11 @@ class CardsController < ApplicationController
   end
 
   def destroy
-  if @card.blank?
-  else
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     @card.delete
-  end
-  redirect_to mypage_path
+    redirect_to mypage_path
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
