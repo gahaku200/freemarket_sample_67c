@@ -15,7 +15,12 @@ Rails.application.routes.draw do
       get 'category_grandchildren'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
-      get 'buy'
+    end
+    resources :buys, only: [:index] do
+      collection do
+        post 'pay', to: 'buys#pay'
+        get 'done', to: 'buys#done'
+      end
     end
   end
 
@@ -26,7 +31,6 @@ Rails.application.routes.draw do
   resources :cards, only: [:index,:new,:create, :destroy] do
     collection do
       get 'done', to: 'cards#done'
-      get 'completed', to: 'cards#completed'
     end
   end
 

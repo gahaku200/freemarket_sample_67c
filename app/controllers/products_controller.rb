@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  require 'payjp'
+
   before_action :move_to_index, except: [:index, :select_registrations, :show]
 
   def index
@@ -42,6 +44,7 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
   end
 
+
   private
 
   def product_params
@@ -51,11 +54,6 @@ class ProductsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
-  
-  def set_categories
-    @parent_categories = Category.roots
-    @default_child_categories = @parent_categories.first.children
-    @default_child_child_childcategories = @default_child_categories.first.children
-  end
+
   
 end
