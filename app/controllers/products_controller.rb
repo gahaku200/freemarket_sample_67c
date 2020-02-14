@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
 
+  require 'payjp'
+
   before_action :move_to_index, except: [:index, :select_registrations, :show]
+  before_action :set_product, only: [:pay, :buy, :done]
 
   def index
     @images =Image.all
@@ -42,6 +45,41 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
   end
 
+  def buy
+    @user = User.find(current_user.id)
+    @card = Card.find_by(user_id: current_user.id)
+    redirect_to root_path if @product.buyer != nil || @product.seller_id == current_user.id
+  end
+
+  def pay
+    if @card.blank?
+      redirect_to controller: "cards", action: "new"
+      flash[:alert] = '購入にはクレジットカード登録が必要です'
+    else
+     # 購入した際の情報を元に引っ張ってくる
+     card = current_user.card
+     # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      Payjp::Charge.create(
+      amount: @product.price, #支払金額
+      customer: card.customer_id, #顧客ID
+      currency: 'jpy', #日本円
+      )
+     # ↑商品の金額をamountへ、cardの顧客idをcustomerへ、currencyをjpyへ入れる
+      if @product.update(buyer_id: current_user.id)
+        flash[:notice] = '購入しました。' 
+        redirect_to controller: "cards", action: 'completed'
+      else
+        flash[:alert] = '購入に失敗しました。'
+        redirect_to action: 'buy'
+      end
+    end
+  end
+
+
+  def done
+  end
+
   private
 
   def product_params
@@ -51,11 +89,9 @@ class ProductsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
-  
-  def set_categories
-    @parent_categories = Category.roots
-    @default_child_categories = @parent_categories.first.children
-    @default_child_child_childcategories = @default_child_categories.first.children
+
+  def set_product
+    @product = Product.find(params[:product_id])
   end
   
 end

@@ -75,7 +75,7 @@
             = link_to  '#', class: "product_btn" do
               出品情報を編集する
           - elsif user_signed_in? && current_user.id != @product.seller_id
-            = link_to  '#', class: "product_btn" do
+            = link_to  buy_product_path(product_id: @product.id), class: "product_btn" do
               購入画面に進む
         .comment-box
           %ul.comment-contents
