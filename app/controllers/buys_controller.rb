@@ -15,16 +15,21 @@ class BuysController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    Payjp::Charge.create(
-      :amount => @product.price,          #支払金額を引っ張ってくる
-      :customer => @card.customer_id,  #顧客ID
-      :currency => 'jpy',              #日本円
-    )
-    if @product.update(buyer_id: current_user.id)
-      redirect_to action: 'done', notice: "購入しました。"
+    if @product.buyer_id.present?
+    redirect_to root_path, notice: "申し訳ありません。先ほど商品が売り切れたようです・・・。" 
     else
-      redirect_to action: 'buy', notice: "購入に失敗しました。"
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      Payjp::Charge.create(
+        :amount => @product.price,          #支払金額を引っ張ってくる
+        :customer => @card.customer_id,  #顧客ID
+        :currency => 'jpy',              #日本円
+      )
+      if @product.update(buyer_id: current_user.id)
+        redirect_to action: 'done'
+      else
+        flash.now[:alert] = '購入に失敗しました。'
+        render :buy
+      end
     end
   end
 
