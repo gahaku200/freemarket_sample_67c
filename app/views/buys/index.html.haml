@@ -75,9 +75,15 @@
                     = @address.building_name
                     %br/
                     = "#{@user.first_name}#{@user.last_name} 様"
-            %section.buy-content.buy-user-info
-            = form_with url: pay_product_path(@product.id,@default_card_information), method: :post, local: true do
-              %button.payjp-button{type: "submit","data-key" => "sk_test_5254de2e5d5a8edd4f73c033",src: "https://checkout.pay.jp"}
-                購入する
+            .buy-content.buy-user-info
+            - if @card.present?
+              = link_to pay_product_buys_path, method: :post do
+                %button.btn{type:"submit",class:"buy__centerbox__buyinfo__buybutton__red"} 購入する
+            - else
+              = link_to new_card_path, data: {"turbolinks" => false}  do
+                %button.btn{type:"submit",class:"buy__centerbox__buyinfo__buybutton__red"} 
+                  クレジットカードを登録する
+
+
 
   = render "products/footer"
