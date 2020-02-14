@@ -47,7 +47,11 @@ class ProductsController < ApplicationController
 
   def buy
     @user = User.find(current_user.id)
+    @address = Address.find_by(user_id: current_user.id)
+    @product_images = @product.images.limit(3)
     @card = Card.find_by(user_id: current_user.id)
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
     redirect_to root_path if @product.buyer != nil || @product.seller_id == current_user.id
   end
 
