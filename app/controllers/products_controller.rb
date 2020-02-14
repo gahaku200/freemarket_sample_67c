@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   require 'payjp'
 
   before_action :move_to_index, except: [:index, :select_registrations, :show]
-  before_action :set_product, only: [:pay, :buy, :done]
 
   def index
     @images =Image.all
@@ -45,23 +44,14 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
   end
 
-  def buy
-    @user = User.find(current_user.id)
-    @address = Address.find_by(user_id: current_user.id)
-    @product_images = @product.images.limit(3)
-    @card = Card.find_by(user_id: current_user.id)
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
-    redirect_to root_path if @product.buyer != nil || @product.seller_id == current_user.id
-  end
-
   def pay
     if @card.blank?
       redirect_to controller: "cards", action: "new"
       flash[:alert] = '購入にはクレジットカード登録が必要です'
     else
      # 購入した際の情報を元に引っ張ってくる
-     card = current_user.card
+     @product = Product.find(params[:product_id])
+     card = Card.where(user_id: current_user.id).first
      # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       Payjp::Charge.create(
@@ -80,8 +70,22 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def done
+    @product = Product.find(params[:product_id])
+  end
+
+  def buy
+    @product = Product.find(params[:product_id])
+    @user = User.find(current_user.id)
+    @address = Address.find_by(user_id: current_user.id)
+    @product_images = @product.images.limit(3)
+    @card = Card.find_by(user_id: current_user.id)
+    redirect_to root_path if @product.buyer != nil || @product.seller_id == current_user.id
+    if @card.present?
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
+    end
   end
 
   private
@@ -94,8 +98,5 @@ class ProductsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
   
 end

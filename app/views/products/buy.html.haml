@@ -31,13 +31,7 @@
             %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
               .buy-content-inner
                 %h3 支払い方法
-                - if @card.blank?
-                  = link_to new_card_path, data: {"turbolinks" => false} do
-                    %p.buy-user-info-text
-                      %span.buy-register-text 商品の購入にはクレジットカードの登録が必要です。
-                      = icon 'fas', 'chevron-right'
-                      %span.buy-register-text こちらから登録ください。
-                - else
+                - if @card.present?
                   %label 
                     カード番号
                     = "**** **** **** " + @default_card_information.last4
@@ -53,6 +47,13 @@
                     %p.buy-user-info-text
                       = icon 'fas', 'chevron-right'
                       %span.buy-register-text こちらから変更ください。
+                - else
+                  = link_to new_card_path, data: {"turbolinks" => false} do
+                    %p.buy-user-info-text
+                      %span.buy-register-text 商品の購入にはクレジットカードの登録が必要です。
+                      = icon 'fas', 'chevron-right'
+                      %span.buy-register-text こちらから登録ください。
+
                   
             %section.buy-content.buy-user-info
               .buy-content-inner
@@ -75,8 +76,8 @@
                     %br/
                     = "#{@user.first_name}#{@user.last_name} 様"
             %section.buy-content.buy-user-info
-              %button.btn-default.btn-blue.bold 購入する
-              %input#user_info_is_not_complete
-        %section
+            = form_with url: pay_product_path(@product.id,@default_card_information), method: :post, local: true do
+              %button.payjp-button{type: "submit","data-key" => "sk_test_5254de2e5d5a8edd4f73c033",src: "https://checkout.pay.jp"}
+                購入する
 
   = render "products/footer"
