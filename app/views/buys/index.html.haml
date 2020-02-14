@@ -74,7 +74,7 @@
                     %br/
                     = @address.building_name
                     %br/
-                    = "#{@user.first_name}#{@user.last_name} 様"
+                    = "#{current_user.first_name}#{current_user.last_name} 様"
             .buy-content.buy-user-info
             - if @card.present?
               = link_to pay_product_buys_path, method: :post, class:"no-underline" do
