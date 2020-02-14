@@ -11,7 +11,7 @@
               = image_tag "#{@product_images[0].image}", class: 'product_images_top'
             .buy-item-detail
               %p.buy-item-name
-                = @product.name
+                = "商品名：#{@product.name}"
               %p.buy-price-ja.bold
                 %span
                 ¥
@@ -32,39 +32,39 @@
               .buy-content-inner
                 %h3 支払い方法
                 - if @card.present?
-                  %label 
-                    カード番号
-                    = "**** **** **** " + @default_card_information.last4
+                  .buy-content-inner-credit
+                    %label 
+                      カード番号：
+                      = "**** **** **** " + @default_card_information.last4
+                    %br
+                    %label 
+                      有効期限：
+                    - exp_month = @default_card_information.exp_month.to_s
+                    - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                    = exp_month + " / " + exp_year
                   %br
-                  %label 
-                    有効期限
-                  - exp_month = @default_card_information.exp_month.to_s
-                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-                  = exp_month + " / " + exp_year
-                  %br
-                  %span.buy-register-text クレジットカードの変更をされる場合は
-                  = link_to new_card_path, data: {"turbolinks" => false} do
+                  .buy-register-note 
+                    クレジットカードの変更をされる場合は
+                  = link_to new_card_path, data: {"turbolinks" => false}, class:"no-underline"  do
                     %p.buy-user-info-text
                       = icon 'fas', 'chevron-right'
                       %span.buy-register-text こちらから変更ください。
                 - else
-                  = link_to new_card_path, data: {"turbolinks" => false} do
-                    %p.buy-user-info-text
-                      %span.buy-register-text 商品の購入にはクレジットカードの登録が必要です。
-                      = icon 'fas', 'chevron-right'
-                      %span.buy-register-text こちらから登録ください。
+                  .buy-register-note-red 
+                    商品の購入にはクレジットカードの登録が必要です。
+
 
                   
             %section.buy-content.buy-user-info
               .buy-content-inner
                 .clearfix
                   %h3.l-left 配送先
-                  = link_to '#', class: 'l-right buy-user-info-fix' do
+                  = link_to '#', class: 'l-right buy-user-info-fix no-underline' do
                     %span 変更する
                     = icon 'fas', 'chevron-right'
                 %address.buy-user-info-text
                   %p
-                    = @address.zipcode
+                    = "〒#{@address.zipcode}"
                     %br/
                     = @address.prefecture
                     = @address.city
@@ -77,12 +77,10 @@
                     = "#{@user.first_name}#{@user.last_name} 様"
             .buy-content.buy-user-info
             - if @card.present?
-              = link_to pay_product_buys_path, method: :post do
-                %button.btn{type:"submit",class:"buy__centerbox__buyinfo__buybutton__red"} 購入する
+              = link_to pay_product_buys_path, method: :post, class:"no-underline" do
+                %button.btn{type:"submit",class:"btn-default btn-blue"} 購入する
             - else
-              = link_to new_card_path, data: {"turbolinks" => false} do
+              = link_to new_card_path,class:"btn-default btn-blue", data: {"turbolinks" => false} do
                 クレジットカードを登録する
-
-
 
   = render "products/footer"

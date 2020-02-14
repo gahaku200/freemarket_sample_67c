@@ -1,3 +1,4 @@
+
 .single-container {
   padding: 0 0 250px;
   .single-header{text-align:center;}
@@ -526,6 +527,24 @@
     .buy-register-text {
       margin: 0 0 0 4px;
     }
+  }
+  .buy-content-inner-credit{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+  }
+
+
+  .buy-register-note {
+    margin-top: 15px;
+  }
+  .buy-register-note-red {
+    margin-top: 20px;
+    color: red;
   }
   
   .buy-user-info-fix {
