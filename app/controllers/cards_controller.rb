@@ -40,7 +40,7 @@ class CardsController < ApplicationController
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     @card.delete
-    redirect_to mypage_path
+    redirect_to mypage_index_path
   end
 
   def done

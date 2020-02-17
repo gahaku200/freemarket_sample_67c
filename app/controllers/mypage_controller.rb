@@ -6,9 +6,6 @@ class MypageController < ApplicationController
   def card
   end
 
-  def credit
-  end
-
   def logout
   end
   

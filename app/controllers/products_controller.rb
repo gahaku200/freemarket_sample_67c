@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy
-      redirect_to mypage_path
+      redirect_to mypage_index_path
     else
       redirect_to product_path
     end
