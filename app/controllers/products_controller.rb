@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  require 'payjp'
+
   before_action :move_to_index, except: [:index, :select_registrations, :show]
   before_action :set_product, only: [:edit, :update]
 
@@ -62,6 +64,14 @@ class ProductsController < ApplicationController
       redirect_to product_path
     else
       render :edit
+
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      redirect_to mypage_path
+    else
+      redirect_to product_path
+
     end
   end
 

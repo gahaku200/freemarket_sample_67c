@@ -8,14 +8,21 @@ Rails.application.routes.draw do
   end
 
   root "products#index"
-  resources :products, only: [:index, :new, :create, :show, :edit, :update] do
+
+  resources :products do
+    
     collection do
       get :select_registrations
       get 'category_children' 
       get 'category_grandchildren'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
-      get 'buy'
+    end
+    resources :buys, only: [:index] do
+      collection do
+        post 'pay', to: 'buys#pay'
+        get 'done', to: 'buys#done'
+      end
     end
     member do
     get 'category_children' 
@@ -32,7 +39,6 @@ Rails.application.routes.draw do
   resources :cards, only: [:index,:new,:create, :destroy] do
     collection do
       get 'done', to: 'cards#done'
-      get 'completed', to: 'cards#completed'
     end
   end
 
