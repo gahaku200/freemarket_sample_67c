@@ -42,6 +42,12 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to mypage_path
+  end
+
   private
 
   def product_params
