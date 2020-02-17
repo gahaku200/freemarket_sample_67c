@@ -74,6 +74,8 @@
           - if user_signed_in? && current_user.id == @product.seller_id
             = link_to  '#', class: "product_btn no-underline" do
               出品情報を編集する
+            = link_to product_path, method: :delete, class: "delete_btn", data: {confirm: "出品情報を削除しますか？"} do
+              出品情報を削除する
           - elsif @product.buyer_id.present?
             = link_to  root_path, class: "product_btn no-underline" do
               SOLD OUT / TOPページへ
