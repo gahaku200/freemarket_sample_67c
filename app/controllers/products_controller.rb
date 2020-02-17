@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to mypage_path
     else
-      redirect_to product_path
+      redirect_to root_path
     end
   end
 
