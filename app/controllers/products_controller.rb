@@ -40,8 +40,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-    @product_images = @product.images.limit(3)
+    begin
+      @product = Product.find(params[:id])
+      @product_images = @product.images.limit(3)
+    rescue
+      redirect_to root_path, alert:'商品詳細ページの表示に失敗しました。'
+    end
   end
 
   def destroy
