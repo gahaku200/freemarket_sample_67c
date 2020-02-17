@@ -45,11 +45,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    if @product.destroy
-      redirect_to mypage_path
-    else
-      redirect_to root_path
+    begin
+      @product = Product.find(params[:id])
+      @product.destroy
+      redirect_to mypage_path, notice:'出品情報を削除しました。'  
+    rescue
+      redirect_to root_path, alert:'出品情報の削除に失敗しました。'
     end
   end
 
@@ -63,5 +64,4 @@ class ProductsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
-  
 end
