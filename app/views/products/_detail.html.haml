@@ -38,8 +38,9 @@
                 %tr
                   %th ブランド
                   %td
-                    = link_to '#'  do
-                      = @product.brand.name
+                    - if @product.brand
+                      = link_to '#'  do
+                        = @product.brand.name
                 %tr
                   %th 商品のサイズ
                   %td
@@ -71,10 +72,15 @@
                   %i.fab.fa-font-awesome-flag
                   不適切な商品の通報
           - if user_signed_in? && current_user.id == @product.seller_id
-            = link_to  '#', class: "product_btn" do
+            = link_to edit_product_path(product_id: @product.id), class: "product_btn" do
               出品情報を編集する
-          - elsif user_signed_in? && current_user.id != @product.seller_id
-            = link_to  '#', class: "product_btn" do
+            = link_to product_path, method: :delete, class: "delete_btn", data: {confirm: "出品情報を削除しますか？"} do
+              出品情報を削除する
+          - elsif @product.buyer_id.present?
+            = link_to  root_path, class: "product_btn no-underline" do
+              SOLD OUT / TOPページへ
+          - else user_signed_in? && current_user.id != @product.seller_id
+            = link_to  product_buys_path(product_id: @product.id), class: "product_btn no-underline" do
               購入画面に進む
         .comment-box
           %ul.comment-contents
