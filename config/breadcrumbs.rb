@@ -24,3 +24,9 @@ crumb :logout do
   link "ログアウト", mypage_logout_path
   parent :mypage
 end
+
+# クレジットカード情報一覧
+crumb :credit do
+  link "クレジットカード情報一覧"
+  parent :card
+end
