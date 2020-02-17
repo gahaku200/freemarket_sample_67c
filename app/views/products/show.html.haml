@@ -2,14 +2,8 @@
   = render "shared/header"
   
   %nav.bread-crumbs
-    %ul
-      %li
-        = link_to '#', class: 'bread-crumbs-top' do
-          %span フリマ
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'bread-crumbs-mypage' do
-          %span 商品ページ（仮）
+    - breadcrumb :product
+    = render "shared/breadcrumbs"
   
   = render "detail"
 

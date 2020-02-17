@@ -1,5 +1,6 @@
 class Address < ApplicationRecord
   belongs_to :user, optional: true
+  
   validates :address_first_name, format:{ with:/\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }, presence: true
   validates :address_last_name, format:{  with:/\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }, presence: true
   validates :address_first_name_kana, format:{ with:/\A[ぁ-んー－]+\z/ }, presence: true
