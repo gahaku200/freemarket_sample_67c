@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   root "products#index"
-  resources :products, only: [:index, :new, :create, :show] do
+  resources :products, only: [:index, :new, :create, :show, :edit, :update] do
     collection do
       get :select_registrations
       get 'category_children' 
@@ -16,6 +16,12 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'buy'
+    end
+    member do
+    get 'category_children' 
+    get 'category_grandchildren'
+    get 'get_category_children', defaults: { format: 'json' }
+    get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
 

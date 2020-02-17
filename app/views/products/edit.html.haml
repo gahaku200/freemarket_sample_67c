@@ -6,7 +6,7 @@
         #sell-container
           .data-reactroot
             .sell-container-inner
-              = form_with(model: @product, html: { class: "formsample"}) do |f|
+              = form_with(model: @product, html: { class: "formsample2"}) do |f|
                 %h2.l-single-head 商品の情報を入力
                 .sell-form
                   .sell-upload-box
@@ -14,25 +14,25 @@
                       出品画像
                       %span.form-require 必須
                     %p 最大10枚までアップロードできます
-                    #image-box
-                      #previews
+                    #image-box2
+                      #previews2
                         - if @product.persisted?
                           - @product.images.each_with_index do |image, i|
-                            = image_tag image.image.url, data: { index: i }, width: "100px", height: '100px'
+                            %li.adsaf
+                              = image_tag image.image.url, data: { index: i }, class: "edit_img_#{i}"
+                              .js-remove{data: { index: i }, name: "[edit_remove][#{i}]"} 削除
                       = f.fields_for :images do |image|
-                        %label.js-file_group{"data-index" => "#{image.index}"}
-                          = image.file_field :image, class: 'js-file'
-                          %br/
+                        %label.js-file_group3{"data-index" => "#{image.index}"}
+                          = image.file_field :image, class: 'js-file2'
                           %pre.visible-pc
                             :preserve
                               ドラッグアンドドロップ
                               またはクリックしてファイルをアップロード
                             %i.icon-camera.fas.fa-camera
-                        - if @product.persisted?
-                          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                          = image.hidden_field :_destroy, data:{ index: image.index },value: 0, class: "delete_img_#{image.index}" 
                       - if @product.persisted?
-                        .js-file_group{"data-index" => "#{@product.images.count}", style: 'display: none'}
-                          = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
+                        .js-file_group3{"data-index" => "#{@product.images.count}", style: 'display: none'}
+                          = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file2'
                   .image_error
                   .sell-content
                     .form-group
@@ -56,7 +56,9 @@
                         .select-categories-form
                     .product-text-form__category.sell-form-box
                       .actions
-                        = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
+                        = f.collection_select :category_id, @category, :id, :name, {prompt: "---",selected: @select_parent.id},  class: "category_select_id", id: "product_category_edit_id",name:""
+                        = f.collection_select :category_id, @child_category, :id, :name, {prompt: "---", selected: @select_child.id}, class: "category_select_id", id: "product_child_edit",name:""
+                        = f.collection_select :category_id, @grand_child_category, :id, :name, {prompt: "---", selected: @select_grandchild.id}, class: "category_select_id", id: "product_grandchild_edit",name:"product[category_id]"
                       .form-group
                         %label
                           ブランド
@@ -119,21 +121,7 @@
                   .modal{role: 'dialog', tabindex: '-1'}
                     .modal-inner
                   .sell-content.sell-btn-box
-                    %div
-                      %p
-                        = link_to '禁止されている出品', '#', target:'_blank'
-                        、
-                        = link_to '行為', '#', target:'_blank'
-                        を必ずご確認ください。
-                      %p
-                        またブランド品でシリアルナンバー等がある場合はご記載ください。
-                        = link_to '偽ブランドの販売', '#', target:'_blank'
-                        は犯罪であり処罰される可能性があります。
-                      %p
-                        また、出品をもちまして
-                        = link_to '加盟店規約', '#', target:'_blank'
-                        に同意したことになります。
-                    =f.submit class: 'btn-default btn-red', value: '出品する' ;
-                    = link_to 'もどる', root_path,class:"btn-default btn-gray"
+                    =f.submit class: 'btn-default btn-red', value: '変更する' ;
+                    = link_to 'キャンセル', root_path,class:"btn-default btn-gray"
                 .overlay
     = render "footer"

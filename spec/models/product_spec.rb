@@ -1,6 +1,6 @@
 require 'rails_helper'
 describe Product do
-  describe '#create' do
+  describe '#create', '#update' do
     it "is invalid without a name" do
       product = build(:product, name: '')
       product.valid?

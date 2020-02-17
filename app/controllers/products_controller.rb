@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
   before_action :move_to_index, except: [:index, :select_registrations, :show]
+  before_action :set_product, only: [:edit, :update]
+
 
   def index
     @images =Image.all
@@ -42,6 +44,27 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
   end
 
+  def edit
+    @parents = Category.all.order("id ASC").limit(13)
+
+    # 現在のカテゴリ選択値
+    @select_grandchild = Category.find(@product.category_id)
+    @select_child = @select_grandchild.parent
+    @select_parent = @select_child.parent
+    # カテゴリ配列
+    @category = Category.where(ancestry: nil)
+    @child_category = @select_parent.children
+    @grand_child_category = @select_child.children
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def product_params
@@ -56,6 +79,10 @@ class ProductsController < ApplicationController
     @parent_categories = Category.roots
     @default_child_categories = @parent_categories.first.children
     @default_child_child_childcategories = @default_child_categories.first.children
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
   
 end
