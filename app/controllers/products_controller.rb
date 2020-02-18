@@ -44,6 +44,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product_images = @product.images.limit(3)
+    @category_child = @product.category.parent
+    @category_parent = @category_child.parent
   end
 
   def edit
