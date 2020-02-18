@@ -32,9 +32,12 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/mypage', to: 'mypage#index'
-  get '/mypage/card', to: 'mypage#card'
-  get '/mypage/logout', to: 'mypage#logout'
+  resources :mypage, only: [:index] do
+    collection do
+      get 'card', to: 'mypage#card'
+      get 'logout', to: 'mypage#logout'
+    end
+  end
 
   resources :cards, only: [:index,:new,:create, :destroy] do
     collection do

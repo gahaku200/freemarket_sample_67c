@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
-        = link_to mypage_path , class: 'mypage-nav-list-item' do
+        = link_to mypage_index_path , class: 'mypage-nav-list-item' do
           マイページ
           = icon 'fas', 'chevron-right'
       %li
@@ -14,7 +14,7 @@
           やることリスト
           = icon 'fas', 'chevron-right'
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to new_product_path, class: 'mypage-nav-list-item' do
           出品する
           = icon 'fas', 'chevron-right'
       %li
@@ -23,15 +23,7 @@
           = icon 'fas', 'chevron-right'
       %li
         = link_to '#', class: 'mypage-nav-list-item' do
-          出品した商品 - 取引中
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'mypage-nav-list-item' do
           出品した商品 - 売却済み
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'mypage-nav-list-item' do
-          購入した商品 - 取引中
           = icon 'fas', 'chevron-right'
       %li
         = link_to '#', class: 'mypage-nav-list-item' do
@@ -42,14 +34,10 @@
     %ul.mypage-nav-list
       %li
         = link_to '#', class: 'mypage-nav-list-item' do
-          プロフィール
-          = icon 'fas', 'chevron-right'
-      %li
-        = link_to '#', class: 'mypage-nav-list-item' do
           発送元・お届け先住所変更
           = icon 'fas', 'chevron-right'
       %li
-        = link_to mypage_card_path , class: 'mypage-nav-list-item' do
+        = link_to card_mypage_index_path , class: 'mypage-nav-list-item' do
           支払い方法
           = icon 'fas', 'chevron-right'
       %li
@@ -65,6 +53,6 @@
           電話番号の確認
           = icon 'fas', 'chevron-right'
       %li
-        = link_to mypage_logout_path, class: 'mypage-nav-list-item mypage-active' do
+        = link_to logout_mypage_index_path, class: 'mypage-nav-list-item mypage-active' do
           ログアウト
           = icon 'fas', 'chevron-right'

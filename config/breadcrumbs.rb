@@ -5,7 +5,7 @@ end
 
 # マイページ
 crumb :mypage do
-  link "マイページ", mypage_path
+  link "マイページ", mypage_index_path
 end
 
 # 商品ページ
@@ -15,13 +15,13 @@ end
 
 # 支払い方法
 crumb :card do
-  link "支払い方法", mypage_card_path
+  link "支払い方法", card_mypage_index_path
   parent :mypage
 end
 
 # ログアウト
 crumb :logout do
-  link "ログアウト", mypage_logout_path
+  link "ログアウト", logout_mypage_index_path
   parent :mypage
 end
 
