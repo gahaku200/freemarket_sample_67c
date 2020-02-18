@@ -13,7 +13,8 @@ $(document).on('turbolinks:load', ()=> {
     const html = `<li class="adsaf">
                     <img data-index="${index}" src="${url}" class="edit_img_${index}">
                     <div data-index="${index}" class="js-remove" name="[edit_remove][${index}]">削除</div>
-                  </li>`;
+                  </li>
+                  <input data-index="${index}" value="0" class="delete_img_${index}" type="hidden" name="product[images_attributes][${index}][_destroy]" id="product_images_attributes_${index}__destroy">`;
     return html;
   }
 
