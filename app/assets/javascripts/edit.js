@@ -1,93 +1,81 @@
 $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
-  const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="js-file_group2">
-                    <input class="js-file" type="file"
+  const buildFileField2 = (num)=> {
+    const html = `<div data-index="${num}" class="js-file_group4">
+                    <input class="js-file2" type="file"
                     name="product[images_attributes][${num}][image]"
                     id="product_images_attributes_${num}_image"><br>
                   </div>`;
     return html;
   }
   // プレビュー用のimgタグを生成する関数
-  const buildImg = (index, url)=> {
-    const html = `<div class='preview-files'>
-                    <div class='preview-file'>
-                      <img data-index="${index}" src="${url}" class="preview-file-img">
-                    </div>
-                    <div data-index="${index}" class="js-remove">削除</div>
-                  </div>`;
+  const buildImg2 = (index, url)=> {
+    const html = `<li class="adsaf">
+                    <img data-index="${index}" src="${url}" class="edit_img_${index}">
+                    <div data-index="${index}" class="js-remove" name="[edit_remove][${index}]">削除</div>
+                  </li>`;
     return html;
   }
 
   // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex2 = [1,2,3,4,5,6,7,8,9,10];
   // 既に使われているindexを除外
-  lastIndex = $('.js-file_group:last').data('index');
-  fileIndex.splice(0, lastIndex);
+  lastIndex2 = $('.js-file_group3:last').data('index');
+  fileIndex2.splice(0, lastIndex2);
 
   $('.hidden-destroy').hide();
 
-  $('#image-box').on('change', '.js-file', function(e) {
-    const targetIndex = $(this).parent().data('index');
+  $('#image-box2').on('change', '.js-file2', function(e) {
+    const targetIndex2 = $(this).parent().data('index');
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
-      img.setAttribute('image', blobUrl);
+    if (img2 = $(`img[data-index="${targetIndex2}"]`)[0]) {
+      img2.setAttribute('image', blobUrl);
     } else {  // 新規画像追加の処理
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      $('#previews2').append(buildImg2(targetIndex2, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
-      fileIndex.shift();
+      $('#image-box2').append(buildFileField2(fileIndex2[0]));
+      fileIndex2.shift();
       // 末尾の数に1足した数を追加する
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      fileIndex2.push(fileIndex2[fileIndex2.length - 1] + 1);
     }
   });
 
-  $('.js-file_group:first').on('click', function() {
-    $('.js-file:last').trigger('click');
+  $('.js-file_group3:first').on('click', function() {
+    $('.js-file2:last').trigger('click');
     return false;
   });
 
-  $('#image-box').on('click', '.js-remove', function() {
-    // const targetIndex = $(this).parent().data('index');
-    // // 該当indexを振られているチェックボックスを取得する
-    // const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    // // もしチェックボックスが存在すればチェックを入れる
-    // if (hiddenCheck) hiddenCheck.prop('checked', true);
-
-    $(this).parent().remove();
-    // $(`img[data-index="${targetIndex}"]`).remove();
-    
+  $('#image-box2').on('click', '.js-remove', function() {
     var number = Number($(this).data('index'));
-    
+    //削除ボタンを押すと該当の画像が消える
+    const edit_img_btn = $(`.edit_img_${number}`);
+    if(edit_img_btn) edit_img_btn.remove();
+    //削除ボタンを押すと削除ボタンの表記が消える
+    $(this).parent().remove();
+    //削除ボタンを押すと該当のinputfileが消える
     const file_field_btn = $(`#product_images_attributes_${number}_image`);
     if(file_field_btn) file_field_btn.remove(); // アップロードボタンが存在すれば削除
-    
+    //_destoryのvalue0を1に変える
+    $(`.delete_img_${number}`).val('1');
 
     // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+    if ($('.js-file2').length == 0) $('#image-box2').append(buildFileField2(fileIndex2[0]));
   });
 
-  $(function() {
-    // 販売利益の計算
-    $('.price-flex__input').keyup(function() {
-      let price = $(this).val();
-      if(price >= 300) {
-        let fee = price * 0.10;
-        let resultFee = Math.floor(fee)
-        $('.result-fee').text(`${resultFee}円`);
-  
-        let profit = price - resultFee;
-        $('.result-profit').text(`${profit}円`);
-      }
-      if(!price) {
-        $('.result-fee').text(`-`);
-        $('.result-profit').text(`-`);
-      }
-    });
+  //販売価格表示されていたら販売手数料と販売利益が表示される
+  $(document).ready(function() {
+    let price2 = Number($('.price-flex__input').val());
+    if(price2 >= 300) {
+      let fee2 = price2 * 0.10;
+      let resultFee2 = Math.floor(fee2)
+      $('.result-fee').text(`${resultFee2}円`);
+      let profit2 = price2 - resultFee2;
+      $('.result-profit').text(`${profit2}円`);
+    }
   });
 
   $(document).ready(function(){    
@@ -99,12 +87,9 @@ $(document).on('turbolinks:load', ()=> {
   // 出品ページのフォームにバリデーションをかける
   $(function(){
     //form指定
-    $('.formsample').validate({
+    $('.formsample2').validate({
       //バリデーション、ルール設定
       rules: {
-        "product[images_attributes][0][image]": { //画像
-          required: true, //入力必須
-        },
         "product[name]": { //商品名
           required: true, //入力必須
           maxlength: 40 //40文字以内
@@ -121,9 +106,6 @@ $(document).on('turbolinks:load', ()=> {
       },
       //エラーメッセージ設定
       messages: {
-        "product[images_attributes][0][image]": { //画像
-          required: '画像がありません'
-        },
         "product[name]": { //商品名
           required: '入力してください',
           maxlength: '40文字以内で入力してください'
@@ -142,11 +124,7 @@ $(document).on('turbolinks:load', ()=> {
       //エラーメッセージ出力場所設定
       errorPlacement: function(error, element){
         // 画像と商品価格に関してのエラー文はデフォルトだと変な場所に出力される。その為場所を指定している。
-        if(element.attr("name")=="product[images_attributes][0][image]")
-        {
-          error.insertAfter(".js-file_group");	
-        }
-        else if(element.attr("name")=="product[price]")
+        if(element.attr("name")=="product[price]")
         {
           error.insertAfter(".price_error");	
         }

@@ -72,7 +72,7 @@
                   %i.fab.fa-font-awesome-flag
                   不適切な商品の通報
           - if user_signed_in? && current_user.id == @product.seller_id
-            = link_to  '#', class: "product_btn no-underline" do
+            = link_to edit_product_path(product_id: @product.id), class: "product_btn" do
               出品情報を編集する
             = link_to product_path, method: :delete, class: "delete_btn", data: {confirm: "出品情報を削除しますか？"} do
               出品情報を削除する
