@@ -1,5 +1,6 @@
 class MypageController < ApplicationController
 
+
   def index
   end
 
@@ -8,5 +9,6 @@ class MypageController < ApplicationController
 
   def logout
   end
+
   
 end
