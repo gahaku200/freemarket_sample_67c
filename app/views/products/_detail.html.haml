@@ -33,10 +33,14 @@
                 %tr
                   %th カテゴリー
                   %td
+                    = icon 'fas', 'chevron-right'
                     = @category_parent.name
+
                     %br
+                    = icon 'fas', 'chevron-right'
                     = @category_child.name
                     %br
+                    = icon 'fas', 'chevron-right'
                     = link_to '#'  do
                       = @product.category.name
                 %tr
