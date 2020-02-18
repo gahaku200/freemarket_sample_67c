@@ -2,7 +2,8 @@
   %section.mypage-user-link
     %figure
       = image_tag 'member_photo_noimage_thumb.png', class: 'mypage-user-icon',size: '48x48'
-    %h2.bold テストユーザー
+    %h2.bold
+      = "ユーザー名：#{current_user.nickname}"
     .mypage-number
   %section.mypage-tab-container-notification-todo
     %ul.mypage-tabs
