@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   end
 
   root "products#index"
+  
+  namespace :products do
+    resources :searches, only: :index
+  end
 
   resources :products do
-    
     collection do
       get :select_registrations
       get 'category_children' 
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
     get 'get_category_children', defaults: { format: 'json' }
     get 'get_category_grandchildren', defaults: { format: 'json' }
     end
+    
   end
 
   resources :mypage, only: [:index] do
