@@ -29,7 +29,7 @@ $(function(){
       $('.form__submit').prop('disabled', false);
     })
     .fail(function(){
-      alert('error')
+      alert('空白ではコメントは登録できません')
     })
   })
 })
