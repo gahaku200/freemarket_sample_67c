@@ -39,4 +39,9 @@ class Product < ApplicationRecord
   scope :ladies, -> { image.lady.sorted }
   scope :mens, -> { image.men.sorted }
   scope :tests, -> { image.brand_test.sorted }
+
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
 end
