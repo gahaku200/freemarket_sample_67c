@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delivery_days
   belongs_to :category
   belongs_to :brand, optional: true
+  has_many :comments
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
