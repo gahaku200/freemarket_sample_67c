@@ -5,7 +5,7 @@ describe User do
     it "nickname: nil error" do
       user = build(:user, nickname: nil)
       user.valid?
-      expect(user.errors[:nickname]).to include("can't be blank")
+      expect(user.errors[:nickname]).to include("が入力されていません。")
     end
 
     it "first_name: format zenkaku only" do
