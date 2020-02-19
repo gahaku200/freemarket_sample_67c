@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   require 'payjp'
 
-  before_action :move_to_index, except: [:index, :select_registrations, :show]
+  before_action :move_to_index, except: [:index, :select_registrations]
   before_action :set_product, only: [:edit, :update]
 
 
@@ -85,7 +85,7 @@ class ProductsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in?
+    redirect_to root_path, notice: "ログイン　または　ユーザー登録をお願いします"  unless user_signed_in?
   end
   
   def set_categories
