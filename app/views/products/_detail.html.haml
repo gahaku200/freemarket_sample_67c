@@ -101,16 +101,16 @@
                     ：
                   = comment.text
           .comment-contents
-          #new_comment.new_comment
+          .new_comment
             %p.notice-msg
               相手のことを考え丁寧なコメントを心がけましょう。
               %br/
               不快な言葉遣いなどは利用制限や退会処分となることがあります。
             %br/
             - if current_user
-              = form_with(model: [@product, @comment], local: true) do |form|
-                = form.text_area :text, placeholder: "", rows: "2",id:"comment_body"
-                = form.submit "コメントする",class:"comment-btn"
+              = form_with(model: [@product, @comment], local: true, id: "new_comment")  do |form|
+                = form.text_area :text, placeholder: "", rows: "2",id:"comment_body", class: "textbox"
+                = form.submit "コメントする",class:"comment-btn form__submit"
                 %i.fas.fa-comment
             - else
               %strong
