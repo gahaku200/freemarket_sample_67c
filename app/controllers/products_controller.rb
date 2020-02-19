@@ -46,6 +46,8 @@ class ProductsController < ApplicationController
     @product_images = @product.images.limit(3)
     @category_child = @product.category.parent
     @category_parent = @category_child.parent
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def edit

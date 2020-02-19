@@ -233,6 +233,19 @@
             margin: 10px 0;
             text-align: center;
 
+            .comments{
+              border: solid 1px;
+              border-color: #3ccace;
+              padding: 10px;
+              h4{
+                font-size:20px;
+              }
+              p{
+                margin-top: 10px;
+                font-size: 15px;
+              }
+            }
+
             .notice-msg {
               padding: 8px;
               font-size: 14px;
@@ -246,6 +259,7 @@
                 width: 100%;
                 min-height: 104px;
                 padding: 10px;
+                margin-bottom: 10px;
               }
 
               .comment-btn {
@@ -257,6 +271,12 @@
                 width: 60%;
                 font-size: 18px;
                 border-radius: 100px;
+              }
+              .fa-comment{
+                position: relative;
+                right: 130px;
+                color: white;
+                font-size: 20px;
               }
             }
           }
