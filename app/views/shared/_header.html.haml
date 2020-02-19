@@ -5,13 +5,10 @@
         = link_to '/' do
           = image_tag src='logo.png'
       .searchbox
-        %form
-          %input{type: 'hidden'}
-          %input{placeholder: 'キーワードから探す'}
-          %button
-            .searchbox__icon
-              = image_tag src='icon-search 1.png'
-          %input{type: 'hidden'}
+        = form_with(url: products_searches_path, local: true, method: :get, class: "search-form") do |f|
+          = f.text_field :search, placeholder: "キーワードから探す", class: "search-input"
+          = f.submit "", class: "searchbox__icon"
+          %i.fas.fa-search
       %ul.resultlists
     .nav
       %ul.listsLeft
