@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'category_grandchildren'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search'
     end
     resources :buys, only: [:index] do
       collection do
