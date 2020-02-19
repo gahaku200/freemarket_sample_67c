@@ -3,11 +3,11 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.save
       respond_to do |format|
+        format.html { redirect_to product_path(params[:product_id]) }
         format.json
       end
     else
-      flash.now[:alert] = '空のコメントは登録できません。'
-      render product_path(params[:product_id])
+      redirect_to product_path(params[:product_id]),notice:'空のコメントは登録できません。'
     end
   end
 
