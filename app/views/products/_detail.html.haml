@@ -91,28 +91,27 @@
             = link_to  product_buys_path(product_id: @product.id), class: "product_btn no-underline" do
               購入画面に進む
         .comment-box
-          %ul.comment-contents
-          %form#new_comment.new_comment
-            %textarea#comment_body
+          .comments
+            %h4 ＜コメント一覧＞
+            - if @comments
+              - @comments.each do |comment|
+                %p
+                  %strong
+                    = link_to comment.user.nickname, "#"
+                    ：
+                  = comment.text
+          .comment-contents
+          #new_comment.new_comment
             %p.notice-msg
               相手のことを考え丁寧なコメントを心がけましょう。
               %br/
               不快な言葉遣いなどは利用制限や退会処分となることがあります。
             %br/
-            %button.comment-btn
-              %i.fas.fa-comment
-              コメントする
-      %ul.links
-        %li
-          = link_to '#'  do
-            %i.fas.fa-chevron-left
-            %span
-            前の商品
-        %li
-          = link_to '#'  do
-            %span 後ろの商品
-            %i.fas.fa-chevron-right
-      .related-products
-        = link_to '#'  do
-          ベビー・キッズをもっと見る
-        .product-lists
+            - if current_user
+              = form_with(model: [@product, @comment], local: true) do |form|
+                = form.text_area :text, placeholder: "", rows: "2",id:"comment_body"
+                = form.submit "コメントする",class:"comment-btn"
+                %i.fas.fa-comment
+            - else
+              %strong
+                %p ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
