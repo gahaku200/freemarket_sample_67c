@@ -68,27 +68,29 @@ img {
       .searchbox{
         margin-left: auto;
         width: 100%;
-        form {
+        .search-form {
           width: 100%;
           display: flex;
           margin-bottom: 5px;
-          input {
+          .search-input {
             width: calc(100% - 26px);
             height: 36px;
             padding: 0 0 0 5px;
           }
-          button{
+          .searchbox__icon{
             width: 36px;
             border: 0;
             cursor: pointer;
             background-color: #3CCACE;
             padding: 8px;
-            .searchbox_icon{
-              img {
-                border: 0;
-              }
-            }
           }
+          .fa-search:before {
+            content: "";
+            position: relative;
+            right: 25px;
+            top: 10px;
+            color: white;
+        }
         }
       }
       .resultlists {
