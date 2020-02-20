@@ -18,8 +18,8 @@
           出品する
           = icon 'fas', 'chevron-right'
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
-          出品した商品 
+        = link_to '#', class: 'mypage-nav-list-item  mypage-active' do
+          出品した商品
           = icon 'fas', 'chevron-right'
       %li
         = link_to '#', class: 'mypage-nav-list-item' do
@@ -33,7 +33,7 @@
           発送元・お届け先住所変更
           = icon 'fas', 'chevron-right'
       %li
-        = link_to card_mypage_index_path , class: 'mypage-nav-list-item mypage-active' do
+        = link_to card_mypage_index_path , class: 'mypage-nav-list-item' do
           支払い方法
           = icon 'fas', 'chevron-right'
       %li
