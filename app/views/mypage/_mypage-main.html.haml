@@ -28,7 +28,22 @@
                     %span
                       = product.created_at.to_s(:datetime_jp)
                 = icon 'fas', 'chevron-right'
-        - if @products.blank?
+        - @products_buy.each do |product|
+          - if product.buyer_id  == current_user.id
+            %li
+              = link_to product_path(product), data: {"turbolinks" => false}, class: 'mypage-item-link' do
+                %figure
+                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+                .mypage-item-body
+                  .mypage-item-text 
+                    = "事務局から個別メッセージ「#{product.name}を購入しました」"
+                  %time
+                    = icon 'far', 'clock'
+                    %span
+                      = product.created_at.to_s(:datetime_jp)
+                = icon 'fas', 'chevron-right'
+      - @products.each do |product|
+        - if @products.blank? && @products_buy.blank?
           %li
             = link_to '#', class: 'mypage-item-link' do
               %figure
@@ -37,12 +52,12 @@
                 .mypage-item-text 
                   = "事務局から個別メッセージはありません"
   %section.mypage-tab-container
-    %h2.mypage-tab-head 購入した商品
+    %h2.mypage-tab-head 最近購入した商品
     %ul.mypage-tabs
       %li.active
         %h3
           = link_to '#', class: 'mypage-tab-transaction-now-link' do
-            取引中
+            購入履歴
       %li
         %h3
           = link_to '#', class: 'mypage-tab-transaction-old-link' do
