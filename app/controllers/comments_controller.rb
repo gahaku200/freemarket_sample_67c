@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
         format.json
       end
     else
-      redirect_to product_path(params[:product_id]),notice:'空のコメントは登録できません。'
+      redirect_to product_path(params[:product_id])
     end
   end
 
