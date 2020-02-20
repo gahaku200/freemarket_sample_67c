@@ -28,17 +28,14 @@
                     %span
                       = product.created_at.to_s(:datetime_jp)
                 = icon 'fas', 'chevron-right'
-          - else
-            %li
-              = link_to '#', class: 'mypage-item-link' do
-                %figure
-                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-                .mypage-item-body
-                  .mypage-item-text 
-                    = "事務局から個別メッセージはありません"
-              - break
-
-        
+        - if @products.blank?
+          %li
+            = link_to '#', class: 'mypage-item-link' do
+              %figure
+                = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+              .mypage-item-body
+                .mypage-item-text 
+                  = "事務局から個別メッセージはありません"
   %section.mypage-tab-container
     %h2.mypage-tab-head 購入した商品
     %ul.mypage-tabs

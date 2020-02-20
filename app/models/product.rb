@@ -35,8 +35,9 @@ class Product < ApplicationRecord
   scope :men, -> { where(category_id: 149..237) }
   scope :brand_test, -> { where(brand_id: 1) }
   scope :sorted, -> { order('created_at DESC').limit(3).to_a }
-  scope :mypage_sorted, -> { image.buyer.order('created_at DESC').limit(6).to_a }
-
+  scope :arrival, -> { order('created_at DESC') }
+  scope :mypage_sorted, -> { image.order('created_at DESC').limit(6).to_a }
+  scope :new_arrival, -> { image.arrival }
   scope :product, -> { image.buyer.sorted }
   scope :ladies, -> { image.lady.sorted }
   scope :mens, -> { image.men.sorted }

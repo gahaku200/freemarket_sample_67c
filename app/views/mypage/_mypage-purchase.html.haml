@@ -1,10 +1,10 @@
 .l-content
   .exhibited-list 
-    出品した商品一覧
+    購入した商品一覧
   .product__boxs
     %ul.product__boxs-parent
       - @products.each do |products|
-        - if products.seller_id  == current_user.id
+        - if products.buyer_id == current_user.id
           %li.product__boxs-parent-file
             - if products.buyer_id.blank?
               .product__boxs-parent-file-image
@@ -23,7 +23,6 @@
                 = ('¥' + products.price.to_s(:delimited))
               .product__boxs-parent-file-content
                 = products.name
-      - if @products.blank? 
+      - if @products.blank?
         .exhibited-list__not
-          < 現在商品は出品しておりません。> 
-            
+          < 現在商品を購入しておりません。> 
