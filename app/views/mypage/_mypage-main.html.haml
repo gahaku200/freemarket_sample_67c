@@ -25,7 +25,7 @@
         - else
           - @products.each do |product|
             %li
-              = link_to '#', class: 'mypage-item-link' do
+              = link_to product_path(product), class: 'mypage-item-link' do
                 %figure
                   = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
                 .mypage-item-body
@@ -34,7 +34,7 @@
                   %time
                     = icon 'far', 'clock'
                     %span
-                      = product.created_at
+                      = product.created_at.to_s(:datetime_jp)
                 = icon 'fas', 'chevron-right'
         
 

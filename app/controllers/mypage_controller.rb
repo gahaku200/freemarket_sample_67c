@@ -2,7 +2,7 @@ class MypageController < ApplicationController
 
 
   def index
-    @products = Product.product
+    @products = Product.mypage_sorted
   end
 
   def card
