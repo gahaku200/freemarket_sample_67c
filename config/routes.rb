@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :mypage, only: [:index] do
+  resources :mypage, only: [:index, :show] do
     collection do
       get 'card', to: 'mypage#card'
       get 'logout', to: 'mypage#logout'

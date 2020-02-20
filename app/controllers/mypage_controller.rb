@@ -5,13 +5,14 @@ class MypageController < ApplicationController
     @products = Product.mypage_sorted
   end
 
+  def show
+    @products = Product.search(params[:search]).limit(132)
+  end
+
   def card
   end
 
   def logout
-  end
-
-  def product_show
   end
 
   

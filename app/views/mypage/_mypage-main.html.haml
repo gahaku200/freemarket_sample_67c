@@ -14,16 +14,9 @@
             お知らせ
     .tab-content
       %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
-        - if @products.empty?
-          %li
-            = link_to '#', class: 'mypage-item-link' do
-              %figure
-                = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-              .mypage-item-body
-                .mypage-item-text 
-                  = "事務局から個別メッセージはありません"
-        - else
-          - @products.each do |product|
+        - @products.each do |product|
+          - if product.seller_id  == current_user.id
+         
             %li
               = link_to product_path(product), class: 'mypage-item-link' do
                 %figure
@@ -36,9 +29,17 @@
                     %span
                       = product.created_at.to_s(:datetime_jp)
                 = icon 'fas', 'chevron-right'
+          - else
+            %li
+              = link_to '#', class: 'mypage-item-link' do
+                %figure
+                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+                .mypage-item-body
+                  .mypage-item-text 
+                    = "事務局から個別メッセージはありません"
+              - break
+
         
-
-
   %section.mypage-tab-container
     %h2.mypage-tab-head 購入した商品
     %ul.mypage-tabs
