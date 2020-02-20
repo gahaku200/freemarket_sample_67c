@@ -13,6 +13,12 @@ crumb :product do
   link "商品", root_path
 end
 
+# 出品した商品
+crumb :exhibited do
+  link "出品した商品"
+  parent :mypage
+end
+
 # 支払い方法
 crumb :card do
   link "支払い方法", card_mypage_index_path

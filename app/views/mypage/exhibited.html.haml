@@ -1,12 +1,12 @@
 .default-container
   = render "shared/header"
   %nav.bread-crumbs
-    - breadcrumb :mypage
+    - breadcrumb :exhibited
     = render "shared/breadcrumbs"
   .l-container.clearfix
-    = render "mypage-main"
+    = render "mypage-exhibited"
     
-    = render "mypage-side-show"
+    = render "mypage-side-exhibited."
     
   %aside.appBanner
     .inner

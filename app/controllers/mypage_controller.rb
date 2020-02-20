@@ -5,8 +5,8 @@ class MypageController < ApplicationController
     @products = Product.mypage_sorted
   end
 
-  def show
-    @products = Product.search(params[:search]).limit(132)
+  def exhibited
+    @products = Product.image.order('created_at DESC')
   end
 
   def card
