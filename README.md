@@ -1,3 +1,30 @@
+# freemarket_sample_67c
+フリマアプリのクローンサイト。
+
+## Description
+誰でも簡単に売り買いが楽しめるフリマアプリの機能を再現したページ。
+ユーザー登録、商品出品、商品購入などの機能が再現されていますが、実際の取引はできません。
+
+## Features
+
+- haml/SASS記法と、命名規則BEMを使ったマークアップ
+- ウィザード形式を用いたユーザー登録フォーム
+- ajaxを使用した非同期処理
+- pay.jpによる購入処理
+- capistranoによるAWS EC2への自動デプロイ
+- AWS S3への画像アップロード
+- RSpecを使った単体テスト
+
+## Requirement
+
+- Ruby 2.5.1
+- Rails 5.2.3
+
+## Author
+[gahaku200]
+[nrfn]
+[maruyoshi]
+
 ## Usersテーブル
 
 |Column|Type|Options|
@@ -93,4 +120,15 @@
 |user|references|null: false, foreign_key: true|
 
 ### Association
+- belongs_to :user
+
+## Commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
+|product_id|integer|null: false|
+|text|text|null: false|
+
+### Association
+- belongs_to :product
 - belongs_to :user

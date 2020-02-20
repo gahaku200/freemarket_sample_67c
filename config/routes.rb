@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   resources :mypage, only: [:index] do
     collection do
+      get 'exhibited', to: 'mypage#exhibited'
+      get 'purchase', to: 'mypage#purchase'
       get 'card', to: 'mypage#card'
       get 'logout', to: 'mypage#logout'
     end

@@ -5,88 +5,49 @@
     %h2.bold
       = "ユーザー名：#{current_user.nickname}"
     .mypage-number
+    
   %section.mypage-tab-container-notification-todo
     %ul.mypage-tabs
       %li.active
         %h3
-          = link_to '#', class: 'mypage-nav-link' do
+          = link_to '#', class: 'mypage-nav-link active' do
             お知らせ
-      %li
-        %h3
-          = link_to '#', class: 'mypage-nav-todo' do
-            やることリスト
     .tab-content
       %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 1 時間前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 1 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 2 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 3 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 3 日前
-            = icon 'fas', 'chevron-right'
-        %li.mypage-go-list
-          = link_to '#' , class: 'mypage-go-list--link' do
-            一覧を見る
-      %ul#mypage-tab-todo.mypage-item-list.tab-pane
-        %li.mypage-item-not-found.bold 
-
-  %section.mypage-tab-container
-    %h2.mypage-tab-head 購入した商品
-    %ul.mypage-tabs
-      %li.active
-        %h3
-          = link_to '#', class: 'mypage-tab-transaction-now-link' do
-            取引中
-      %li
-        %h3
-          = link_to '#', class: 'mypage-tab-transaction-old-link' do
-            過去の取引
-    .tab-content
-      %h3
-        取引中の商品がありません 
-      %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
-      %ul#mypage-tab-transaction-old.mypage-item-list.tab-pane
-        %li.mypage-item-not-found.bold 
+        - @products.each do |product|
+          - if product.seller_id  == current_user.id
+            %li
+              = link_to product_path(product), data: {"turbolinks" => false}, class: 'mypage-item-link' do
+                %figure
+                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+                .mypage-item-body
+                  .mypage-item-text 
+                    = "事務局から個別メッセージ「#{product.name}を出品しました」"
+                  %time
+                    = icon 'far', 'clock'
+                    %span
+                      = product.created_at.to_s(:datetime_jp)
+                = icon 'fas', 'chevron-right'
+        - @products_buy.each do |product|
+          - if product.buyer_id  == current_user.id
+            %li
+              = link_to product_path(product), data: {"turbolinks" => false}, class: 'mypage-item-link' do
+                %figure
+                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+                .mypage-item-body
+                  .mypage-item-text 
+                    = "事務局から個別メッセージ「#{product.name}を購入しました」"
+                  %time
+                    = icon 'far', 'clock'
+                    %span
+                      = product.created_at.to_s(:datetime_jp)
+                = icon 'fas', 'chevron-right'
+      - @products.each do |product|
+        - if @products.blank? && @products_buy.blank?
+          %li
+            = link_to '#', class: 'mypage-item-link' do
+              %figure
+                = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+              .mypage-item-body
+                .mypage-item-text 
+                  = "事務局から個別メッセージはありません"
