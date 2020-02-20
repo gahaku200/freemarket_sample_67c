@@ -42,8 +42,7 @@
                     %span
                       = product.created_at.to_s(:datetime_jp)
                 = icon 'fas', 'chevron-right'
-      - @products.each do |product|
-        - if @products.blank? && @products_buy.blank?
+        - if (@products.blank?) && (@products_buy.blank?)
           %li
             = link_to '#', class: 'mypage-item-link' do
               %figure
