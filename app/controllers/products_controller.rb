@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to product_path
+      redirect_to product_path, data: {"turbolinks" => false}
     else
       render :edit
     end
@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to mypage_index_path
     else
-      redirect_to product_path
+      redirect_to product_path, data: {"turbolinks" => false}
     end
   end
 

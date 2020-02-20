@@ -9,7 +9,7 @@
         現在商品はありません。
     - else
       - @products.each do |product|
-        = link_to product_path(product), class: 'main__center__products__product' do
+        = link_to product_path(product), data: {"turbolinks" => false}, class: 'main__center__products__product' do
           - @images.each do |image|
             - if product.id == image.product_id
               = image_tag "#{image.image}", class: 'main__center__products__product__image'
@@ -34,7 +34,7 @@
       - else
         - @products_ladies.each do |product|
           - if product.buyer_id == nil
-            = link_to product_path(product), class: 'main__center__products__product' do
+            = link_to product_path(product), data: {"turbolinks" => false}, class: 'main__center__products__product' do
               - @images.each do |image|
                 - if product.id == image.product_id
                   = image_tag "#{image.image}", class: 'main__center__products__product__image'
@@ -60,7 +60,7 @@
       - else
         - @products_mens.each do |product|
           - if product.buyer_id == nil
-            = link_to product_path(product), class: 'main__center__products__product' do
+            = link_to product_path(product), data: {"turbolinks" => false}, class: 'main__center__products__product' do
               - @images.each do |image|
                 - if product.id == image.product_id
                   = image_tag "#{image.image}", class: 'main__center__products__product__image'
@@ -86,7 +86,7 @@
       - else
         - @products_test.each do |product|
           - if product.buyer_id == nil
-            = link_to product_path(product), class: 'main__center__products__product' do
+            = link_to product_path(product), data: {"turbolinks" => false}, class: 'main__center__products__product' do
               - @images.each do |image|
                 - if product.id == image.product_id
                   = image_tag "#{image.image}", class: 'main__center__products__product__image'

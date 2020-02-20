@@ -8,7 +8,7 @@
           %li.product__boxs-parent-file
             - if products.buyer_id.blank?
               .product__boxs-parent-file-image
-                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id)
+                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id), data: {"turbolinks" => false} 
               .product__boxs-parent-file-price
                 = ('¥' + products.price.to_s(:delimited))
               .product__boxs-parent-file-content
@@ -18,7 +18,7 @@
                 .sell
                   = 'SOLD'
               .product__boxs-parent-file-image
-                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id)
+                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id), data: {"turbolinks" => false} 
               .product__boxs-parent-file-price
                 = ('¥' + products.price.to_s(:delimited))
               .product__boxs-parent-file-content

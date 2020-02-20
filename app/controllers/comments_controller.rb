@@ -3,11 +3,11 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to product_path(params[:product_id]) }
+        format.html { redirect_to product_path(params[:product_id]), data: {"turbolinks" => false} }
         format.json
       end
     else
-      redirect_to product_path(params[:product_id])
+      redirect_to product_path(params[:product_id]), data: {"turbolinks" => false}
     end
   end
 
