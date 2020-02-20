@@ -5,73 +5,39 @@
     %h2.bold
       = "ユーザー名：#{current_user.nickname}"
     .mypage-number
+    
   %section.mypage-tab-container-notification-todo
     %ul.mypage-tabs
       %li.active
         %h3
-          = link_to '#', class: 'mypage-nav-link' do
+          = link_to '#', class: 'mypage-nav-link active' do
             お知らせ
-      %li
-        %h3
-          = link_to '#', class: 'mypage-nav-todo' do
-            やることリスト
     .tab-content
       %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 1 時間前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 1 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 2 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 3 日前
-            = icon 'fas', 'chevron-right'
-        %li
-          = link_to '#', class: 'mypage-item-link' do
-            %figure.mypage-logo
-              = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
-            .mypage-item-body
-              .mypage-item-text 事務局から個別メッセージ「ログイン通知」
-              %time
-                = icon 'far', 'clock'
-                %span 3 日前
-            = icon 'fas', 'chevron-right'
-        %li.mypage-go-list
-          = link_to '#' , class: 'mypage-go-list--link' do
-            一覧を見る
-      %ul#mypage-tab-todo.mypage-item-list.tab-pane
-        %li.mypage-item-not-found.bold 
+        - if @products.empty?
+          %li
+            = link_to '#', class: 'mypage-item-link' do
+              %figure
+                = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+              .mypage-item-body
+                .mypage-item-text 
+                  = "事務局から個別メッセージはありません"
+        - else
+          - @products.each do |product|
+            %li
+              = link_to '#', class: 'mypage-item-link' do
+                %figure
+                  = image_tag 'logologo.png', class: 'mypage-logo-icon',size: '48x48'
+                .mypage-item-body
+                  .mypage-item-text 
+                    = "事務局から個別メッセージ「#{product.name}を出品しました」"
+                  %time
+                    = icon 'far', 'clock'
+                    %span
+                      = product.created_at
+                = icon 'fas', 'chevron-right'
+        
+
 
   %section.mypage-tab-container
     %h2.mypage-tab-head 購入した商品
