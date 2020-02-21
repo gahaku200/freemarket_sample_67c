@@ -72,11 +72,13 @@
               background-color: white;
               color: #333;
               padding: 16px;
+              max-height: 82px;
               .name {
                 overflow: hidden;
                 line-height: 1.5;
                 font-size: 16px;
                 text-align: left;
+                max-height: 24px
               }
               .details {
                 font-size: 16px;
