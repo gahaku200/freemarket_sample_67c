@@ -2,7 +2,9 @@ class ProductsController < ApplicationController
 
   require 'payjp'
 
-  before_action :move_to_index, except: [:index, :select_registrations, :show]
+  before_action :move_to_index, except: [:index, :select_registrations]
+  before_action :set_product, only: [:edit, :update]
+
 
   def index
     @images =Image.all
@@ -40,21 +42,41 @@ class ProductsController < ApplicationController
   end
 
   def show
-    begin
-      @product = Product.find(params[:id])
-      @product_images = @product.images.limit(3)
-    rescue
-      redirect_to root_path, alert:'商品詳細ページの表示に失敗しました。'
+    @product = Product.find(params[:id])
+    @product_images = @product.images.limit(3)
+    @category_child = @product.category.parent
+    @category_parent = @category_child.parent
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
+  end
+
+  def edit
+    @parents = Category.all.order("id ASC").limit(13)
+
+    # 現在のカテゴリ選択値
+    @select_grandchild = Category.find(@product.category_id)
+    @select_child = @select_grandchild.parent
+    @select_parent = @select_child.parent
+    # カテゴリ配列
+    @category = Category.where(ancestry: nil)
+    @child_category = @select_parent.children
+    @grand_child_category = @select_child.children
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path, data: {"turbolinks" => false}
+    else
+      render :edit
     end
   end
 
   def destroy
-    begin
-      @product = Product.find(params[:id])
-      @product.destroy
-      redirect_to mypage_path, notice:'出品情報を削除しました。'  
-    rescue
-      redirect_to root_path, alert:'出品情報の削除に失敗しました。'
+    @product = Product.find(params[:id])
+    if @product.destroy
+      redirect_to mypage_index_path
+    else
+      redirect_to product_path, data: {"turbolinks" => false}
     end
   end
 
@@ -65,7 +87,17 @@ class ProductsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in?
+    redirect_to root_path, notice: "ログイン　または　ユーザー登録をお願いします"  unless user_signed_in?
+  end
+  
+  def set_categories
+    @parent_categories = Category.roots
+    @default_child_categories = @parent_categories.first.children
+    @default_child_child_childcategories = @default_child_categories.first.children
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
+  
 end

@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delivery_days
   belongs_to :category
   belongs_to :brand, optional: true
+  has_many :comments
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
@@ -34,8 +35,16 @@ class Product < ApplicationRecord
   scope :men, -> { where(category_id: 149..237) }
   scope :brand_test, -> { where(brand_id: 1) }
   scope :sorted, -> { order('created_at DESC').limit(3).to_a }
+  scope :arrival, -> { order('created_at DESC') }
+  scope :mypage_sorted, -> { image.order('created_at DESC').limit(4).to_a }
+  scope :new_arrival, -> { image.arrival }
   scope :product, -> { image.buyer.sorted }
   scope :ladies, -> { image.lady.sorted }
   scope :mens, -> { image.men.sorted }
   scope :tests, -> { image.brand_test.sorted }
+
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
 end

@@ -51,20 +51,21 @@ $(document).on('turbolinks:load', ()=> {
     return false;
   });
 
+  //画像削除した時の処理//
   $('#image-box').on('click', '.js-remove', function() {
-    const targetIndex = $(this).parent().data('index');
-    // 該当indexを振られているチェックボックスを取得する
-    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    // もしチェックボックスが存在すればチェックを入れる
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
+    // const targetIndex = $(this).parent().data('index');
+    // // 該当indexを振られているチェックボックスを取得する
+    // const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    // // もしチェックボックスが存在すればチェックを入れる
+    // if (hiddenCheck) hiddenCheck.prop('checked', true);
 
     $(this).parent().remove();
-    $(`img[data-index="${targetIndex}"]`).remove();
+    // $(`img[data-index="${targetIndex}"]`).remove();
     
     var number = Number($(this).data('index'));
     
-    const upload_btn = $(`#product_images_attributes_${number}_image`);
-    if(upload_btn) upload_btn.remove(); // アップロードボタンが存在すれば削除
+    const file_field_btn = $(`#product_images_attributes_${number}_image`);
+    if(file_field_btn) file_field_btn.remove(); // アップロードボタンが存在すれば削除
     
 
     // 画像入力欄が0個にならないようにしておく
@@ -82,6 +83,10 @@ $(document).on('turbolinks:load', ()=> {
   
         let profit = price - resultFee;
         $('.result-profit').text(`${profit}円`);
+      }
+      if(!price) {
+        $('.result-fee').text(`-`);
+        $('.result-profit').text(`-`);
       }
     });
   });
@@ -113,6 +118,21 @@ $(document).on('turbolinks:load', ()=> {
           required: true, //入力必須
           number: true, //整数限定
           range: [300, 9999999] //300以上9999999以内
+        },
+        "product[category_id]": { //
+          required: true, //入力必須
+        },
+        "product[status_id]": { //
+          required: true, //入力必須
+        },
+        "product[delivery_charge_id]": { //
+          required: true, //入力必須
+        },
+        "product[ship_from_id]": { //
+          required: true, //入力必須
+        },
+        "product[delivery_days_id]": { //
+          required: true, //入力必須
         }
       },
       //エラーメッセージ設定
@@ -132,8 +152,22 @@ $(document).on('turbolinks:load', ()=> {
           required: '300以上9,999,999以下で入力してください',
           number: '300以上9,999,999以下で入力してください',
           range: '300以上9,999,999以下で入力してください'
+        },
+        "product[category_id]": { //
+          required: 'カテゴリーを選択してください'
+        },
+        "product[status_id]": { //
+          required: '商品の状態を選択してください'
+        },
+        "product[delivery_charge_id]": { //
+          required: '配送料の負担を選択してください'
+        },
+        "product[ship_from_id]": { //
+          required: '発送元の地域を選択してください'
+        },
+        "product[delivery_days_id]": { //
+          required: '発送までの日数を選択してください'
         }
-
       },
       //エラーメッセージ出力場所設定
       errorPlacement: function(error, element){
@@ -145,6 +179,10 @@ $(document).on('turbolinks:load', ()=> {
         else if(element.attr("name")=="product[price]")
         {
           error.insertAfter(".price_error");	
+        }
+        else if(element.attr("name")=="product[category_id]")
+        {
+          error.insertAfter(".error-categories");	
         }
         else{
           error.insertAfter(element);	

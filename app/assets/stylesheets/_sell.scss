@@ -223,6 +223,7 @@ main {
     label {
       font-weight: 600;
       display: inline-block;
+      margin-top: 15px;
     }
     div {
     .input-default {
@@ -766,6 +767,7 @@ main {
 
 .error {
   color: red;
+  font-weight: 600;
 }
 
 .l-right.sell-price-input.en {

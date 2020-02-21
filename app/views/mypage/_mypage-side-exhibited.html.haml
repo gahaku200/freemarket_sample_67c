@@ -1,0 +1,54 @@
+.l-side
+  %nav.mypage-nav
+    %ul.mypage-nav-list
+      %li
+        = link_to mypage_index_path , class: 'mypage-nav-list-item' do
+          マイページ
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          お知らせ
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          お気に入り
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to new_product_path, class: 'mypage-nav-list-item' do
+          出品する
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to exhibited_mypage_index_path, class: 'mypage-nav-list-item  mypage-active' do
+          出品した商品
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to purchase_mypage_index_path , class: 'mypage-nav-list-item' do
+          購入した商品 
+          = icon 'fas', 'chevron-right'
+
+    %h3.mypage-nav-head 設定
+    %ul.mypage-nav-list
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          発送元・お届け先住所変更
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to card_mypage_index_path , class: 'mypage-nav-list-item' do
+          支払い方法
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          メール/パスワード
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          本人情報
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to '#', class: 'mypage-nav-list-item' do
+          電話番号の確認
+          = icon 'fas', 'chevron-right'
+      %li
+        = link_to logout_mypage_index_path, class: 'mypage-nav-list-item' do
+          ログアウト
+          = icon 'fas', 'chevron-right'

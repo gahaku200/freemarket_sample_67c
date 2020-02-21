@@ -8,13 +8,19 @@ Rails.application.routes.draw do
   end
 
   root "products#index"
-  resources :products, only: [:index, :new, :create, :show, :destroy] do
+  
+  namespace :products do
+    resources :searches, only: :index
+  end
+
+  resources :products do
     collection do
       get :select_registrations
       get 'category_children' 
       get 'category_grandchildren'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search'
     end
     resources :buys, only: [:index] do
       collection do
@@ -22,11 +28,25 @@ Rails.application.routes.draw do
         get 'done', to: 'buys#done'
       end
     end
+    member do
+    get 'category_children' 
+    get 'category_grandchildren'
+    get 'get_category_children', defaults: { format: 'json' }
+    get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+
+    resources :comments, only: [:create]
+
   end
 
-  get '/mypage', to: 'mypage#index'
-  get '/mypage/card', to: 'mypage#card'
-  get '/mypage/logout', to: 'mypage#logout'
+  resources :mypage, only: [:index] do
+    collection do
+      get 'exhibited', to: 'mypage#exhibited'
+      get 'purchase', to: 'mypage#purchase'
+      get 'card', to: 'mypage#card'
+      get 'logout', to: 'mypage#logout'
+    end
+  end
 
   resources :cards, only: [:index,:new,:create, :destroy] do
     collection do

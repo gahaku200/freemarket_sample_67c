@@ -1,0 +1,29 @@
+.l-content
+  .exhibited-list 
+    出品した商品一覧
+  .product__boxs
+    %ul.product__boxs-parent
+      - @products.each do |products|
+        - if products.seller_id  == current_user.id
+          %li.product__boxs-parent-file
+            - if products.buyer_id.blank?
+              .product__boxs-parent-file-image
+                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id), data: {"turbolinks" => false} 
+              .product__boxs-parent-file-price
+                = ('¥' + products.price.to_s(:delimited))
+              .product__boxs-parent-file-content
+                = products.name
+            - else
+              .product__boxs-parent-file-label
+                .sell
+                  = 'SOLD'
+              .product__boxs-parent-file-image
+                = link_to image_tag("#{products.images.first.image}", class: 'image'),product_path(products.id), data: {"turbolinks" => false} 
+              .product__boxs-parent-file-price
+                = ('¥' + products.price.to_s(:delimited))
+              .product__boxs-parent-file-content
+                = products.name
+      - if @products.blank? 
+        .exhibited-list__not
+          < 現在商品は出品しておりません。> 
+            
