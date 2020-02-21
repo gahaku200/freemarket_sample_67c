@@ -20,7 +20,7 @@
                           - @product.images.each_with_index do |image, i|
                             = image_tag image.image.url, data: { index: i }, width: "100px", height: '100px'
                       = f.fields_for :images do |image|
-                        %label.js-file_group{"data-index" => "#{image.index}"}
+                        %label.js-file_group{"data-index": "#{image.index}", id: 'dropArea'}
                           = image.file_field :image, class: 'js-file'
                           %br/
                           %pre.visible-pc
@@ -31,7 +31,7 @@
                         - if @product.persisted?
                           = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
                       - if @product.persisted?
-                        .js-file_group{"data-index" => "#{@product.images.count}", style: 'display: none'}
+                        .js-file_group{"data-index": "#{@product.images.count}", style: 'display: none'}
                           = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
                   .image_error
                   .sell-content
@@ -57,6 +57,7 @@
                     .product-text-form__category.sell-form-box
                       .actions
                         = f.collection_select :category_id, @parents, :id, :name, { prompt: "---" }, { id:"product_category_id", class: 'category_select_id', name:"" }
+                      .error-categories
                       .form-group
                         %label
                           ブランド
