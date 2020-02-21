@@ -51,6 +51,7 @@ $(document).on('turbolinks:load', ()=> {
     return false;
   });
 
+  //画像削除した時の処理//
   $('#image-box').on('click', '.js-remove', function() {
     // const targetIndex = $(this).parent().data('index');
     // // 該当indexを振られているチェックボックスを取得する
@@ -117,6 +118,21 @@ $(document).on('turbolinks:load', ()=> {
           required: true, //入力必須
           number: true, //整数限定
           range: [300, 9999999] //300以上9999999以内
+        },
+        "product[category_id]": { //
+          required: true, //入力必須
+        },
+        "product[status_id]": { //
+          required: true, //入力必須
+        },
+        "product[delivery_charge_id]": { //
+          required: true, //入力必須
+        },
+        "product[ship_from_id]": { //
+          required: true, //入力必須
+        },
+        "product[delivery_days_id]": { //
+          required: true, //入力必須
         }
       },
       //エラーメッセージ設定
@@ -136,8 +152,22 @@ $(document).on('turbolinks:load', ()=> {
           required: '300以上9,999,999以下で入力してください',
           number: '300以上9,999,999以下で入力してください',
           range: '300以上9,999,999以下で入力してください'
+        },
+        "product[category_id]": { //
+          required: 'カテゴリーを選択してください'
+        },
+        "product[status_id]": { //
+          required: '商品の状態を選択してください'
+        },
+        "product[delivery_charge_id]": { //
+          required: '配送料の負担を選択してください'
+        },
+        "product[ship_from_id]": { //
+          required: '発送元の地域を選択してください'
+        },
+        "product[delivery_days_id]": { //
+          required: '発送までの日数を選択してください'
         }
-
       },
       //エラーメッセージ出力場所設定
       errorPlacement: function(error, element){
@@ -149,6 +179,10 @@ $(document).on('turbolinks:load', ()=> {
         else if(element.attr("name")=="product[price]")
         {
           error.insertAfter(".price_error");	
+        }
+        else if(element.attr("name")=="product[category_id]")
+        {
+          error.insertAfter(".error-categories");	
         }
         else{
           error.insertAfter(element);	
