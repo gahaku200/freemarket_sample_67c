@@ -59,6 +59,7 @@
                         = f.collection_select :category_id, @category, :id, :name, {prompt: "---",selected: @select_parent.id},  class: "category_select_id", id: "product_category_edit_id",name:""
                         = f.collection_select :category_id, @child_category, :id, :name, {prompt: "---", selected: @select_child.id}, class: "category_select_id", id: "product_child_edit",name:""
                         = f.collection_select :category_id, @grand_child_category, :id, :name, {prompt: "---", selected: @select_grandchild.id}, class: "category_select_id", id: "product_grandchild_edit",name:"product[category_id]"
+                      .error-categories
                       .form-group
                         %label
                           ブランド
