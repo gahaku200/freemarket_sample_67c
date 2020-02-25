@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   require 'payjp'
 
-  before_action :move_to_index, except: [:index, :select_registrations]
+  before_action :move_to_index, except: [:index, :select_registrations, :show]
   before_action :set_product, only: [:edit, :update]
 
 
